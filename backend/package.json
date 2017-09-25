@@ -4,11 +4,20 @@
   "description": "gator apartment finder",
   "main": "server.js",
   "scripts": {
-    "test": "gatorhousingtest\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C"
+    "start": "node server.js",
+    "test": "mocha --recursive"
   },
   "author": "saptarshi",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4"
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "elasticsearch": "^13.3.1",
+    "express": "^4.15.4",
+    "get-json": "^1.0.0",
+    "mocha": "^3.5.3",
+    "node-time-uuid": "^0.1.5",
+    "supertest": "^3.0.0"
   }
 }

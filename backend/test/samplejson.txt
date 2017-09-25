@@ -1,10 +1,13 @@
 {
-	"id": 12345,
-	"title": "some ttile",
+	"title": "some title",
 	"owner": "saptarshi",
 	"location": "gainesville, Florida, USA",
 	"zipcode": 32608,
 	"description": "brief description about the apartment",
+	"geolocation" : {
+            "lat" : 40.12,
+            "lon" : -71.34
+    }
 	"details": {
 		"accomodates": 1,
 		"bathrooms": 1,
