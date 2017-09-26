@@ -4,6 +4,10 @@ language: node_js
 node_js:
   - '7'
 
+branches:
+  only:
+  - FRONT_END
+
 before_script:
 - npm install -g @angular/cli
 - npm install -g karma
