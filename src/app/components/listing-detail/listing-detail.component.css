@@ -1,0 +1,18 @@
+
+ .b {
+    text-align: left;
+    text-justify: inter-word;
+    width: 600px;
+    word-wrap: break-word;
+    padding:10px;
+
+    
+  }
+  md-divider {
+    border-width: 0.5px;
+    border-style: solid;
+    color:#e5e5e5;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
