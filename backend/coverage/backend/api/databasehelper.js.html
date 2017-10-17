@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for backend/api/databasehelper.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">backend/api</a> databasehelper.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.18% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>32/55</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">59.26% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>32/54</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var elasticclient = require('../config/database.js');
+var ObjectId = require("node-time-uuid");
+&nbsp;
+// check if DB is present; if not, create a new DB
+var dbstart = function() {
+    elasticclient.indices.get({
+        index:'housing'
+    }, function(err,resp, status) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if(status == 200) {
+            console.log("Database already exists");
+        } else {
+<span class="cstat-no" title="statement not covered" >            createdb();</span>
+        }
+    });
+    
+}
+&nbsp;
+&nbsp;
+// helper function to create new DB
+function <span class="fstat-no" title="function not covered" >createdb(</span>) {
+<span class="cstat-no" title="statement not covered" >     elasticclient.indices.create({  </span>
+        index: 'housing'
+      },<span class="fstat-no" title="function not covered" >fu</span>nction(err,resp,status) {
+<span class="cstat-no" title="statement not covered" >        if(err) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log("Unable to create DB");</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >          console.log("DB successfully created");</span>
+          //createGeoLocationMapping();
+        }
+      });
+}
+&nbsp;
+&nbsp;
+// this creates the indexing for geo location points in the DB programmatically. 
+// Need to integrate this with the main code 
+function <span class="fstat-no" title="function not covered" >createGeoLocationMapping(</span>) {
+<span class="cstat-no" title="statement not covered" >    elasticclient.indices.putMapping({  </span>
+        index: 'housing',
+        type: 'lease',
+        body: {
+          properties: {
+            "geolocation": {
+              "type": "geo_point",
+            }
+          }
+        }
+      }, <span class="fstat-no" title="function not covered" >(e</span>rr, resp, status) =&gt; {
+<span class="cstat-no" title="statement not covered" >          if (err) <span class="cstat-no" title="statement not covered" >throw err;</span></span>
+<span class="cstat-no" title="statement not covered" >          console.log(resp);</span>
+      });
+}
+&nbsp;
+&nbsp;
+// helper function to insert entry in DB
+var dbinsert = function(req, res, callback) {
+    var uuid = new ObjectId();
+    elasticclient.index({  
+        index: 'housing',
+        id: uuid.toString(),
+        type: 'lease',
+        body: {
+            "title": req.body.title,
+            "owner": req.body.owner,
+            "location": req.body.location,
+            "zipcode": req.body.zipcode,
+            "description": req.body.description,
+            "geolocation" : {
+                "lat" : req.body.geolocation.lat,
+                "lon" : req.body.geolocation.lon
+            },
+            "details": {
+                "accomodates": req.body.details.accomodates,
+                "bathrooms": req.body.details.bathrooms,
+                "bathroomtype": req.body.details.bathroomtype,
+                "bedrooms": req.body.details.bedrooms,
+                "studio": req.body.details.studio,
+                "beds": req.body.details.beds,
+                "petfriendly": req.body.details.petfriendly,
+                "propertytype": req.body.details.propertytype,
+                "roomtype": req.body.details.roomtype
+            },
+            "amenities": {
+                "kitchen": req.body.amenities.kitchen,
+                "internet": req.body.amenities.internet,
+                "tv": req.body.amenities.tv,
+                "essentials": req.body.amenities.essentials,
+                "shampoo": req.body.amenities.shampoo,
+                "heating": req.body.amenities.heating,
+                "airconditioning": req.body.amenities.airconditioning,
+                "washer": req.body.amenities.washer,
+                "dryer": req.body.amenities.dryer,
+                "free_parking_on_premises": req.body.amenities.free_parking_on_premises,
+                "free_parking_on_street": req.body.amenities.free_parking_on_street,
+                "paid_parking_off_premises": req.body.amenities.free_parking_off_premises,
+                "wireless_internet": req.body.amenities.wireless_internet,
+                "cable_tv": req.body.amenities.cable_tv,
+                "family_or_kid_friendly": req.body.amenities.family_or_kid_friendly,
+                "suitable_for_events": req.body.amenities.suitable_for_events,
+                "smoking_allowed": req.body.amenities.smoking_allowed,
+                "wheelchair_accessible": req.body.amenities.wheelchair_accessible,
+                "elevator": req.body.amenities.elevator,
+                "indoor_fireplace": req.body.amenities.indoor_fireplace,
+                "buzzer_or_wireless_intercom": req.body.amenities.buzzer_or_wireless_intercom,
+                "doorman": req.body.amenities.doorman,
+                "pool": req.body.amenities.pool,
+                "hottub": req.body.amenities.hottub,
+                "gym": req.body.amenities.gym,
+                "hangers": req.body.amenities.hangers,
+                "laptop_friendly_workspace": req.body.amenities.laptop_friendly_workspace,
+                "private_entrance": req.body.amenities.private_entrance,
+                "window_guards": req.body.amenities.window_guards,
+                "bathtub": req.body.amenities.bathtub
+            },
+            "house_roles": req.body.house_roles
+        }
+      },function(err,resp,status) {
+          console.log(err);
+          callback(err, resp);
+      } );
+}
+&nbsp;
+// check if DB is present; if present, delete the DB
+var dbdelete =  <span class="fstat-no" title="function not covered" >fu</span>nction(req, res, callback) {
+<span class="cstat-no" title="statement not covered" >    elasticclient.indices.get({</span>
+        index:'housing'
+    }, <span class="fstat-no" title="function not covered" >fu</span>nction(err,resp, status) {
+<span class="cstat-no" title="statement not covered" >        if(status == 200) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Database does not exist");</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            deletedb(req, res, callback);</span>
+        }
+    });   
+}
+&nbsp;
+// helper function to delete an existing DB
+function <span class="fstat-no" title="function not covered" >deletedb(</span>req, res, callback) {
+<span class="cstat-no" title="statement not covered" >     elasticclient.indices.delete({  </span>
+        index: 'housing'
+      },<span class="fstat-no" title="function not covered" >fu</span>nction(err,resp,status) {
+<span class="cstat-no" title="statement not covered" >        if(err) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log("Unable to delete DB");</span>
+        }
+<span class="cstat-no" title="statement not covered" >        callback(err, resp);</span>
+      });
+}
+&nbsp;
+// delete the DB element corresponding to a specific id
+var dbdelete_id =  function(input_id, res, callback) {
+    elasticclient.delete({  
+        index: 'housing',
+		type:'lease',
+		id: input_id
+      }, function(err,resp,status) {
+            callback(err, resp);
+      });  
+}
+&nbsp;
+// search for the db and return all documents for an index.
+var dbget = function(req, res, callback) {
+    elasticclient.search({
+        index:'housing',
+        type : 'lease'
+    },	function(err,resp, status) {
+		<span class="missing-if-branch" title="if path not taken" >I</span>if(err) {
+<span class="cstat-no" title="statement not covered" >			console.log("Unable to obtain the database"+ err);</span>
+		}
+		callback(err,resp);
+	});   
+}
+&nbsp;
+// search for the db and return all documents with a specific id.
+var dbget_id = function(input_id, res, callback) {
+    elasticclient.get({
+        index:'housing',
+		type: 'lease',
+		id: input_id
+    },	function(err,resp, status) {
+		if(err) {
+			console.log("Unable to obtain the database");
+		}
+		callback(err,resp);
+	});   
+}
+&nbsp;
+// geo location based searching
+var dbgetgeo = <span class="fstat-no" title="function not covered" >fu</span>nction(req, res, callback) {
+<span class="cstat-no" title="statement not covered" >    elasticclient.search({</span>
+        index: 'housing',
+        type: 'lease',
+        body: {
+                filter : {
+                        geo_distance : {
+                            distance : "1000km",
+                            geolocation : {
+                                lat : 40,
+                                lon : -70
+                            }
+                        }
+                    }
+                }
+            }
+        
+        
+      ).then(<span class="fstat-no" title="function not covered" >fu</span>nction (err, resp, status) {
+<span class="cstat-no" title="statement not covered" >          if(err) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error" + err);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >              console.log("items around" + resp);</span>
+           }
+<span class="cstat-no" title="statement not covered" >           callback(err,resp);</span>
+      });
+}
+&nbsp;
+// functions exposed for other modules
+exports.dbstart = dbstart;
+exports.dbinsert = dbinsert;
+exports.dbdelete = dbdelete;
+exports.dbget = dbget;
+exports.dbget_id = dbget_id;
+exports.dbdelete_id = dbdelete_id;
+exports.dbgetgeo = dbgetgeo;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Oct 12 2017 13:10:48 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

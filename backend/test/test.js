@@ -53,6 +53,7 @@ describe('API endpoints', function() {
           "location": "gainesville, Florida, USA",
           "zipcode": 32608,
           "description": "brief description about the apartment",
+          "rent":"$50",
           "geolocation" : {
                     "lat" : 41.12,
                     "lon" : -70.34

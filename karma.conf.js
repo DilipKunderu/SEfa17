@@ -10,8 +10,15 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
+      require('karma-scss-preprocessor'),
     ],
+    files: [
+      { pattern: './src/theme.scss', included: true, watched: true},
+    ],
+    preprocessors: {
+      './src/theme.scss':['scss'],
+    },
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },

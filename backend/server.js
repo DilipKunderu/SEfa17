@@ -2,16 +2,21 @@ const express = require('express')
 const app = express()
 var elasticclient = require('./config/database.js');
 var routes = require('./api/routes.js');
+var cors = require('cors')
 var dbHelper = require('./api/databasehelper.js');
 var bodyParser = require('body-parser');
 
+
 // need to define body parser before adding the routes so that POST request 
-// can access the JOSN data 
+// can access the JOSN data
+app.use(cors()); 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // use the following route to handle all the API request 
 app.use('/', routes);
+app.use("/uploads", express.static(__dirname + '/uploads'));
 
 
 /* checking for DB connection 

@@ -2,6 +2,19 @@ const express = require('express')
 const router = express.Router();
 var dbHelper = require('./databasehelper.js');
 var rest = require('restler');
+var ObjectId = require("node-time-uuid");
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, __dirname+'/../uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, "image" + '-' + new ObjectId().toString()+"."+file.originalname.split(".")[1]);
+    }
+  })
+  
+  var upload = multer({ storage: storage })
 
 // the default route to check if API request is reaching this file
 router.get("/", function (req, res) {
@@ -18,8 +31,26 @@ router.post("/add", function (req, res) {
     });
 });
 
-// GET API to get entries from database
-router.get("/get", function (req, res) {
+router.post('/leasemetadata', upload.any(), function (req, res, next) {
+    var imageFiles = [];
+    for(var i=0; i< req.files.length; i++) {
+        var sampleFile = req.files[i].filename;
+        imageFiles.push(sampleFile);
+    }
+    //console.log(imageFiles);
+
+    dbHelper.dbMetadataInsert(req,res, imageFiles, function(err, result) {
+        if (err)
+            return res.status(400).send("Not Added"+ err);
+        else
+            return res.status(200).send("Added"+ result);
+    })       
+  });
+
+
+  // GET API to get entries from database
+
+  router.get("/get", function (req, res) {
     //console.log("Accepting GET request");
     dbHelper.dbget(req, res, function (err, result) {
 	    if (err)
@@ -35,6 +66,35 @@ router.get("/get_id", function (req, res) {
 	    if (err)
             return res.status(400).send("Cannot obtain data specific to an id");
 		return res.status(200).send(result);
+    });
+});
+
+// GET API to search points within a fixed radius of a point
+router.get("/geosearch", function(req, res) {
+    dbHelper.dbgetgeo(req, res, function(data, response) {
+        //console.log(response);
+        if (response.statusCode != 200)
+            return res.status(400).send("Not Found");
+        else
+            return res.status(200).send(data.hits.hits);
+    })
+});
+
+  // GET API to get lease metadata from database
+router.get("/leasemetadata", function (req, res) {
+    dbHelper.dbLeaseMetadataGet(req, res, function (err, result) {
+	    if (err)
+            return res.status(400).send("Cannot obtain data");
+		return res.status(200).send(result.hits.hits);
+    });
+});
+
+// GET API to query based on multiple filters
+router.get("/mulfilters", function (req, res) {
+    dbHelper.dbgetMulFilter(req, res, function (data, response) {
+        if (response.statusCode != 200)
+            return res.status(400).send("Not Found");
+        return res.status(200).send(data.hits.hits);
     });
 });
 
@@ -58,45 +118,6 @@ router.delete("/delete_id", function (req, res) {
         return res.status(200).send("Deleted");
     });
 });
-
-router.get("/geosearch", function(req, res) {
-    dbHelper.dbgetgeo(req, res, function(err, result) {
-        if (err)
-            return res.status(400).send("Not Found"+ err);
-        else
-            return res.status(200).send("Found"+ result);
-    })
-});
-
-router.get("/test", function(req, res) {
-    /*rest.get('http://localhost:9200/my_locations/location/_search?pretty').on('complete', function(data) {
-        console.log(data.hits.hits[0]); // auto convert to object
-      });
-*/
-
-      var jsonData = {
-        "query": {
-            "bool" : {
-                "must" : {
-                    "match_all" : {}
-                },
-                "filter" : {
-                    "geo_distance" : {
-                        "distance" : "120km",
-                        "pin.location" : {
-                            "lat" : 40,
-                            "lon" : -70
-                        }
-                    }
-                }
-            }
-        }
-    };
-      rest.postJson('http://localhost:9200/my_locations/location/_search?pretty', jsonData).on('complete', function(data, response) {
-        console.log(data.hits.hits);
-      });
-
-})
 
 // expose to other modules
 module.exports = router;

@@ -9,9 +9,16 @@ branches:
   - master
   - dev
 
+before_install:
+#- cd backend
+
 before_script:
+#- npm install
+#- cd ..
 - npm install -g @angular/cli
 - npm install -g karma
 - npm install
 
-script: ng build
+-script: ng build
+#- cd backend
+#- npm test

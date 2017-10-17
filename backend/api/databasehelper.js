@@ -1,5 +1,6 @@
 var elasticclient = require('../config/database.js');
 var ObjectId = require("node-time-uuid");
+var rest = require('restler');
 
 // check if DB is present; if not, create a new DB
 var dbstart = function() {
@@ -14,7 +15,6 @@ var dbstart = function() {
     });
     
 }
-
 
 // helper function to create new DB
 function createdb() {
@@ -52,6 +52,29 @@ function createGeoLocationMapping() {
 }
 
 
+var dbMetadataInsert = function(req, res, imageFileNames, callback) {
+    var uuid = new ObjectId();
+    elasticclient.index({
+        index: 'housing',
+        id: uuid.toString(),
+        type: 'leasemetadata',
+        body: {
+            "searchid":req.body.searchid,
+            "title":req.body.title,
+            "rent":req.body.rent,
+            "geolocation" : {
+                "lat" : req.body.lat,
+                "lon" : req.body.lon
+            },
+            "images":imageFileNames
+        }
+    },function(err,resp,status) {
+        console.log(err);
+        console.log(resp);
+        callback(err, resp);
+    });
+}
+
 // helper function to insert entry in DB
 var dbinsert = function(req, res, callback) {
     var uuid = new ObjectId();
@@ -60,15 +83,10 @@ var dbinsert = function(req, res, callback) {
         id: uuid.toString(),
         type: 'lease',
         body: {
-            "title": req.body.title,
             "owner": req.body.owner,
             "location": req.body.location,
             "zipcode": req.body.zipcode,
             "description": req.body.description,
-            "geolocation" : {
-                "lat" : req.body.geolocation.lat,
-                "lon" : req.body.geolocation.lon
-            },
             "details": {
                 "accomodates": req.body.details.accomodates,
                 "bathrooms": req.body.details.bathrooms,
@@ -156,6 +174,18 @@ var dbdelete_id =  function(input_id, res, callback) {
       });  
 }
 
+var dbLeaseMetadataGet = function(req, res, callback) {
+    elasticclient.search({
+        index:'housing',
+        type : 'leasemetadata'
+    },	function(err,resp, status) {
+		if(err) {
+			console.log("Unable to obtain the database"+ err);
+		}
+		callback(err,resp);
+	});  
+}
+
 // search for the db and return all documents for an index.
 var dbget = function(req, res, callback) {
     elasticclient.search({
@@ -185,31 +215,52 @@ var dbget_id = function(input_id, res, callback) {
 
 // geo location based searching
 var dbgetgeo = function(req, res, callback) {
-    elasticclient.search({
-        index: 'housing',
-        type: 'lease',
-        body: {
-                filter : {
-                        geo_distance : {
-                            distance : "1000km",
-                            geolocation : {
-                                lat : 40,
-                                lon : -70
-                            }
+    var jsonData = 
+    {
+        "query": {
+            "bool" : {
+                "must" : {
+                    "match_all" : {}
+                },
+                "filter" : {
+                    "geo_distance" : {
+                        "distance" : "100km",
+                        "geolocation" : {
+                            "lat" : 40,
+                            "lon" : 79
                         }
                     }
                 }
             }
-        
-        
-      ).then(function (err, resp, status) {
-          if(err) {
-              console.log("Error" + err);
-          } else {
-              console.log("items around" + resp);
-           }
-           callback(err,resp);
+        }
+    }
+
+    //console.log(jsonData.query.bool.filter.geo_distance.distance);
+      rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
+      on('success', function(data, response) {
+        callback(data, response);
+      }).
+      on('fail', function(data, response) {
+        callback(data, response);
       });
+
+}
+
+var dbgetMulFilter = function(req, res, callback) {
+    var jsonData = 
+    {
+        "query": {
+            "query_string": {
+                "query": "(details.beds:2) AND (owner:saptarshi)"
+            }
+        }
+    }
+
+    rest.postJson('http://localhost:9200/housing/lease/_search?pretty', jsonData).on('success', function(data, response) {
+      callback(data, response);
+    }).on('fail', function(data, response) {
+      callback(data, response);
+    });
 }
 
 // functions exposed for other modules
@@ -220,4 +271,7 @@ exports.dbget = dbget;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;
 exports.dbgetgeo = dbgetgeo;
+exports.dbMetadataInsert = dbMetadataInsert;
+exports.dbLeaseMetadataGet = dbLeaseMetadataGet;
+exports.dbgetMulFilter = dbgetMulFilter;
 

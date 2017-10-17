@@ -1,5 +1,6 @@
+import { RouterModule } from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, LOCALE_ID} from '@angular/core';
+import {NgModule, LOCALE_ID, NO_ERRORS_SCHEMA} from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -36,7 +37,8 @@ import { HomeComponent } from './components/home/home.component';
     SignupComponent,
     HelpComponent,
     ListingDetailComponent,
-    HomeComponent
+    HomeComponent,
+    RouterModule
   ],
   imports: [
     AgmCoreModule.forRoot({
