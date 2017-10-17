@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {MaterialModule} from '../../custom-material/custom-material.module'
 import { ListingDetailComponent } from './listing-detail.component';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ListingDetailComponent', () => {
   let component: ListingDetailComponent;
@@ -8,7 +13,14 @@ describe('ListingDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListingDetailComponent ]
+      declarations: [ ListingDetailComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ],
     })
     .compileComponents();
   }));
