@@ -1,35 +1,35 @@
 <md-toolbar color="primary">
-    {{header}}
-    <span fxFlex></span>
-    <div class="z-depth-5">
-      <md-form-field flex-gt-sm>
-          <input mdInput placeholder="where" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control"
-          #search [formControl]="searchControl">
-      </md-form-field>
-      <md-icon class="icon" color="accent">edit_location</md-icon>
-      
-    </div>
-    <div class="z-depth-5">
-    <md-form-field>
-        <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
-        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-        <md-datepicker #picker></md-datepicker>
-      </md-form-field>
-    </div>
-    <button md-raised-button color="accent">LOGISTICS</button>
-    <span fxFlex></span>
-  </md-toolbar>
+  <h1>{{header}}</h1>
+  <span fxFlex></span>
+  <div class="z-depth-5">
+    <md-form-field flex-gt-sm>
+        <input mdInput placeholder="where" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control"
+        #search [formControl]="searchControl">
+    </md-form-field>
+    <md-icon class="icon" color="accent">edit_location</md-icon>
+    
+  </div>
+  <div class="z-depth-5">
+  <md-form-field>
+      <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
+      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+      <md-datepicker #picker></md-datepicker>
+    </md-form-field>
+  </div>
+  <button md-raised-button color="accent">LOGISTICS</button>
+  <span fxFlex></span>
+</md-toolbar>
 <!-- map -->
 <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
-  <md-card fxFlex="60">
-    <app-carousel></app-carousel>
-  </md-card>
-  <!-- <md-card class="z-depth-5" fxFlex="40">
-      <app-agm-map></app-agm-map>
-    </md-card> -->
-    <div class="container" fcFlex="40">
-        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-        </agm-map>
-      </div>
+<md-card fxFlex="60">
+  <app-carousel></app-carousel>
+</md-card>
+<!-- <md-card class="z-depth-5" fxFlex="40">
+    <app-agm-map></app-agm-map>
+  </md-card> -->
+  <div class="container" fcFlex="40">
+      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+    </div>
 </div>

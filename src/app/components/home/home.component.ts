@@ -14,7 +14,7 @@ import { MapsAPILoader } from '@agm/core';
 })
 
 export class HomeComponent implements OnInit {
-  header: string = 'Subleazify!';
+  public header:String = 'Gator Housing';
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
