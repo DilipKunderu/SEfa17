@@ -29,14 +29,14 @@ export class AppComponent {
         this.titleCounter %= 4;
       }, 500);
 
-      this.http.get('https://jsonplaceholder.typicode.com/photos')
+      this.http.get('http://174.64.102.57:3000/leasemetadata')
       .subscribe(res => {
         this.res = res;
         [].push.apply(this.myData, res);
       });
 
       setInterval((): void => {
-        this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
+        this.imgUrl = 'http://174.64.102.57:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
         this.urlCounter++;
         this.urlCounter %= 10;
         console.log(this.urlCounter);
@@ -48,14 +48,28 @@ export class AppComponent {
       const s: string = JSON.stringify(x);
 
       interface MyObj {
-        albumId: number;
-        id: number;
-        title: string;
-        url: string;
-        thumbnailUrl: string;
+        _index: string;
+        _type: string;
+        _id: string;
+        _score: number;
+        _source: {
+          searchid: number;
+          title: string;
+          rent: string;
+          geolocation: {
+            lat: number;
+            long: number;
+          };
+          images: Array<string>;
+        };
+        // albumId: number;
+        // id: number;
+        // title: string;
+        // url: string;
+        // thumbnailUrl: string;
       }
 
       const obj: MyObj = JSON.parse(s);
-      return obj.url;
+      return obj._source.images[0];
     }
 }
