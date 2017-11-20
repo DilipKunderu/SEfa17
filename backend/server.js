@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 var elasticclient = require('./config/database.js');
-
+var routes = require('./api/routes.js');
 var passport = require('passport');
 var cors = require('cors')
 var dbHelper = require('./api/databasehelper.js');
