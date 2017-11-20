@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/pallaviraman/SEfa17.svg?style=flat-square)](https://travis-ci.org/pallaviraman/SEfa17)
+[![Build Status](https://img.shields.io/travis/DilipKunderu/SEfa17.svg?style=flat-square)](https://travis-ci.org/DilipKunderu/SEfa17)
 
 # GatorHousing - Apartment / sublease finder Website
 
