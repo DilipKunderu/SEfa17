@@ -8,7 +8,7 @@ import { BasicDetails } from '../../subleaseForm01';
 import { MouseEvent as AGMMouseEvent } from '@agm/core';
 
 
-const URL = 'http://174.64.102.57:3000/leasemetadata';
+const URL = 'http://70.171.46.158:3000/leasemetadata';
 
 @Component({
   selector: 'app-add-sublease-form',
@@ -17,6 +17,30 @@ const URL = 'http://174.64.102.57:3000/leasemetadata';
 })
 
 export class AddSubleaseFormComponent implements OnInit {
+  device:number = 1;
+
+  amenities: Array<object> = [
+    {
+      amenity: 'abc',
+      value: 0
+    },
+    {
+      amenity: 'def',
+      value: 1
+    },
+  ];
+  
+    onToggleChange(value) {
+          if (value.checked == true) {
+            this.device = 1;
+            console.log(1);
+          } else {
+            this.device = 0;
+            console.log(0);
+          }
+      }
+
+
 // google maps zoom level
 zoom: number = 8;
 // initial center position for the map
@@ -113,7 +137,8 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
     'this is the description',
      'accomodates is here',
       '', '','', '', '', true, false, true, false, true, true,
-    true, false, true, true, false, true, true, true, true, true, true, 'rent11', new Date(), new Date());
+    true, false, true, true, false, true, true, true, true, true, true, 'rent11', new Date(), new Date()
+  ,'50', '70');
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -173,17 +198,32 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
         formData.append('uploads[]', files[i], files[i]['name']);
     }
 
-    formData.append('rent', 500);
-    formData.append('lat', 39);
-    formData.append('lon', 80);
-    formData.append('startdate', '2017-08');
-    formData.append('enddate', '2018-03');
-    formData.append('searchid', '1234');
-    formData.append('title', 'sefwefwe');
+    formData.append('title', this.model.title);
+    formData.append('owner','Saptarshi');
+    formData.append('rent', this.model.rent);
+    formData.append('lat', this.model.lat);
+    formData.append('lon', this.model.lon);
+    formData.append('email', 'saptarshi@email');
+    formData.append('zipcode', this.model.zipcode);
+    formData.append('description', this.model.description);
+    formData.append('startdate', this.model.start_date.getFullYear() + '-' + this.model.start_date.getMonth());
+    formData.append('enddate', this.model.end_date.getFullYear() + '-' + this.model.end_date.getMonth());
+    formData.append('roomtype', this.model.roomtype);
+    formData.append('bathrooms', this.model.bathrooms);
+    formData.append('bedrooms', this.model.bedrooms);
+    formData.append('internet', true);
+    formData.append('airconditioning', true);
+    formData.append('washer_dryer', true);
+    formData.append('free_parking_on_premises', true);
+    formData.append('private_bathroom', true);
+    formData.append('wheelchair_accessible', true);
+    formData.append('pool', true);
+    formData.append('gym', true);
 
     console.log('form data variable :   ' + formData.toString());
 
-        this.http.post(URL, formData)
+        this.http.post('http://70.171.46.158:3000/lease'
+        , formData)
         .subscribe(files1 => console.log('files', files1))
 }
 

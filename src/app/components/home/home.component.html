@@ -23,13 +23,13 @@
 
     </div>
     <div fxFlex="20">
-        <md-select placeholder="Type of home" [formControl]="animalControl" required>
+        <md-select placeholder="Type of home" [formControl]="typeControl" required>
             <md-option>---</md-option>
-            <md-option *ngFor="let animal of animals" [value]="animal">
-                {{animal.name}}
+            <md-option *ngFor="let entry of types" [value]="entry">
+                {{entry.name}}
             </md-option>
         </md-select>
-        <md-error *ngIf="animalControl.hasError('required')">
+        <md-error *ngIf="typeControl.hasError('required')">
             Please choose a listing
         </md-error>
         <md-hint>
