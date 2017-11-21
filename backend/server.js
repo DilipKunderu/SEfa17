@@ -38,7 +38,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
-//var routes = require('./api/routes.js')(app,passport);
+
 // use the following route to handle all the API request 
 app.use('/', routes);
 app.use("/uploads", express.static(__dirname + '/uploads'));

@@ -1,3 +1,6 @@
+// config/database.js
+
+
 var elasticsearch = require('elasticsearch');
 var config = require('./config.json');
 
