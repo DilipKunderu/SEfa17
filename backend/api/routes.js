@@ -4,6 +4,7 @@ var dbHelper = require('./databasehelper.js');
 var rest = require('restler');
 var ObjectId = require("node-time-uuid");
 var multer = require('multer');
+const crypto = require('crypto');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -40,7 +41,6 @@ router.post('/lease', upload.any(), function (req, res, next) {
         var sampleFile = req.files[i].filename;
         imageFiles.push(sampleFile);
     }
-    //console.log(imageFiles);
 
     dbHelper.dbLeaseInsert(req, res, imageFiles, function (err, result) {
         if (err)
@@ -49,6 +49,27 @@ router.post('/lease', upload.any(), function (req, res, next) {
             return res.status(200).send("Added" + result);
     })
 });
+
+router.post("/signup", function(req, res) {
+    dbHelper.dbSignup(req, res, function (data, response) {
+        if (err)
+            return res.status(400).send("Not Signed up");
+        return res.status(200).send("Signed up");
+    });
+});
+
+router.post("/login", function(req, res) {
+    const secret = req.body.password;
+    const hash = crypto.createHmac('sha256', 'secret')
+                       .update(secret)
+                       .digest('hex');
+    dbHelper.dbLogin(req, res, function(data, response) {
+        var dbPwd = data.hits.hits[0]._source.password;
+        if(dbPwd == hash)
+            return res.status(200).send("Success");
+        return res.status(400).send("Failure");
+    });
+})
 
 router.post('/leasemetadata', upload.any(), function (req, res, next) {
     console.log(req.body.rent);
@@ -172,6 +193,8 @@ router.delete("/delete_id", function (req, res) {
         return res.status(200).send("Deleted");
     });
 });
+
+/*
 module.exports = function(app, passport) {
 
 
@@ -270,6 +293,6 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/');
-}
+}*/
 // expose to other modules
 module.exports = router;

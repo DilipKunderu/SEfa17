@@ -1,6 +1,7 @@
 var elasticclient = require('../config/database.js');
 var ObjectId = require("node-time-uuid");
 var rest = require('restler');
+const crypto = require('crypto');
 
 // check if DB is present; if not, create a new DB
 var dbstart = function() {
@@ -66,6 +67,27 @@ var dbMetadataInsert = function(req, res, imageFileNames, callback) {
             "startdate":req.body.startdate,
             "enddate":req.body.enddate,
             "images":imageFileNames
+        }
+    },function(err,resp,status) {
+        callback(err, resp);
+    });
+}
+
+var dbSignup = function(req, res, callback) {
+    var uuid = new ObjectId();
+    const secret = req.body.password;
+    const hash = crypto.createHmac('sha256', 'secret')
+                       .update(secret)
+                       .digest('hex');
+    console.log(hash);
+    elasticclient.index({
+        index: 'housing',
+        id: uuid.toString(),
+        type: 'info',
+        body: {
+            "username":req.body.username,
+            "email":req.body.email,
+            "password":hash
         }
     },function(err,resp,status) {
         callback(err, resp);
@@ -329,6 +351,22 @@ var dbgetMulFilter = function(req, res, callback) {
     });
 }
 
+var dbLogin = function(req, res, callback) {
+    var jsonData = 
+    {
+        "query": {
+            "query_string": {
+                "query": "(username:sapt)"
+            }
+        }
+    }
+
+    rest.postJson('http://localhost:9200/housing/info/_search?pretty', jsonData).
+    on('complete', function(data, response) {
+        callback(data, response);
+    });
+}
+
 // functions exposed for other modules
 exports.dbstart = dbstart;
 exports.dbinsert = dbinsert;
@@ -344,4 +382,6 @@ exports.dbGetBetweenDates = dbGetBetweenDates;
 exports.dbGetBetweenPrice = dbGetBetweenPrice;
 exports.dbLeaseInsert = dbLeaseInsert;
 exports.dbLeaseGet = dbLeaseGet;
+exports.dbSignup = dbSignup;
+exports.dbLogin = dbLogin;
 
