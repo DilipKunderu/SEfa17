@@ -36,7 +36,7 @@ export class HouseListingService {
   res: Object;
 
   model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
-  true, false, true, true, false, true, true, true, true, true, true,'rent',new Date(), new Date());
+  true, false, true, true, false, true, true, true, true, true, true,'rent',new Date(), new Date(), '', '');
 
   constructor(
     private http: HttpClient, 
@@ -44,7 +44,7 @@ export class HouseListingService {
     injector: Injector) {
       setTimeout(()=>this.http = injector.get(HttpClient));
 
-    this.http.get('http://10.136.189.31:3000/leasemetadata/')
+    this.http.get('http://70.171.46.158:3000/leasemetadata/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.listingArray, res);
@@ -85,7 +85,7 @@ export class HouseListingService {
 
         const lat: number =  parseFloat(t._source.geolocation.lat);
         const lng: number =  parseFloat(t._source.geolocation.lon);
-        const label: string = 'A';
+        const label: string = s;
         const draggable: boolean = false;
 
         this.markers.push({
@@ -94,29 +94,29 @@ export class HouseListingService {
     }
   }
 
-  onSubmit() {
-    interface ResponseInterface {
-      _id: string;
-     }
+  // onSubmit() {
+  //   interface ResponseInterface {
+  //     _id: string;
+  //    }
 
-    const req = this.http.post<ResponseInterface>('http://10.136.189.31:3000/add', this.model)
-    .subscribe(
-      res => {
-        console.log(res);
-        this.http.get('http://10.136.189.31:3000').subscribe(
-          res1 => {
-            console.log(res1);
-          },
-          err1 => {
-            console.log(err1);
-          }
-        );
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  //   const req = this.http.post<ResponseInterface>('http://10.136.189.31:3000/add', this.model)
+  //   .subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.http.get('http://10.136.189.31:3000').subscribe(
+  //         res1 => {
+  //           console.log(res1);
+  //         },
+  //         err1 => {
+  //           console.log(err1);
+  //         }
+  //       );
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 }
 
 interface Marker {

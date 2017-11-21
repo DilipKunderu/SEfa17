@@ -35,7 +35,6 @@ import { ListingDetailComponent } from './components/listing-detail/listing-deta
 
 import { HomeComponent } from './components/home/home.component';
 import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
-import { LeafletmapComponent } from './components/leafletmap/leafletmap.component';
 
 // export function init (data: HouseListingService) {
 //   return () => {
@@ -54,7 +53,6 @@ import { LeafletmapComponent } from './components/leafletmap/leafletmap.componen
     ListingDetailComponent,
     HomeComponent,
     AddSubleaseFormComponent,
-    LeafletmapComponent,
     FileSelectDirective
   ],
   imports: [

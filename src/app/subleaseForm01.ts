@@ -4,7 +4,7 @@ export class BasicDetails {
         public owner: string,
         public zipcode: string,
         public description: string,
-        public accomodates: string,
+        public title: string,
         public bathrooms: string,
         public bathroomtype: string,
         public bedrooms: string,
@@ -29,6 +29,8 @@ export class BasicDetails {
         public bathtub: boolean,
         public rent: string,
         public start_date: Date,
-        public end_date: Date
+        public end_date: Date,
+        public lat: string,
+        public lon: string
     ) {}
 }
