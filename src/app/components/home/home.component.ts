@@ -16,8 +16,6 @@ import { HouseListingService } from './../../house-listing.service';
 })
 
 export class HomeComponent implements OnInit {
-  dummy: any[] = [];
-
   animalControl = new FormControl('', [Validators.required]);
   
     animals = [
@@ -109,12 +107,13 @@ export class HomeComponent implements OnInit {
   }
 
   onChange(e: Event) {
+  
   }
 
   onRangeApply() {
     this.data.markers.length = 0;
     this.data.listingArray.length = 0;
-    this.http.get('http://174.64.102.57:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
+    this.http.get('http://10.136.189.31:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
       .subscribe(res => {
         this.res = res;
         [].push.apply(this.data.listingArray, res);
@@ -143,7 +142,7 @@ export class HomeComponent implements OnInit {
 
   onMappClick() {
     this.data.markers.length = 0;
-    this.http.get('http://174.64.102.57:3000/leasemetadata')
+    this.http.get('http://10.136.189.31:3000/leasemetadata')
     .subscribe(res => {
       const a = JSON.stringify(res);
       const b = JSON.parse(a);
@@ -174,7 +173,7 @@ export class HomeComponent implements OnInit {
     this.data.markers.length = 0;
     
     this.data.listingArray.length = 0;
-    this.http.get('http://174.64.102.57:3000/date?min='
+    this.http.get('http://10.136.189.31:3000/date?min='
       + this.startDate.getFullYear() + '-' + (this.startDate.getMonth() + 1)
       + '&max=' + this.endDate.getFullYear() + '-' + (this.endDate.getMonth() + 1))
       .subscribe(res => {

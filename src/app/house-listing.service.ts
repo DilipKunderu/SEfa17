@@ -32,11 +32,11 @@ export class HouseListingService {
 		  draggable: true
 	  }
   ];
-  public URL = 'http://174.64.102.57:3000/';
+  public URL = 'http://10.136.39.201:3000/';
   res: Object;
 
   model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
-  true, false, true, true, false, true, true, true, true, true, true);
+  true, false, true, true, false, true, true, true, true, true, true,'rent',new Date(), new Date());
 
   constructor(
     private http: HttpClient, 
@@ -44,7 +44,7 @@ export class HouseListingService {
     injector: Injector) {
       setTimeout(()=>this.http = injector.get(HttpClient));
 
-    this.http.get('http://174.64.102.57:3000/leasemetadata/')
+    this.http.get('http://10.136.189.31:3000/leasemetadata/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.listingArray, res);
@@ -75,33 +75,23 @@ export class HouseListingService {
     }
   }
 
-  load() {
-    // this.http.get('http://174.64.102.57:3000/leasemetadata/')
-    // .subscribe(res => {
-    //   this.res = res;
-    //   [].push.apply(this.listingArray, res);
-    //   // const temp = JSON.stringify(res[0]);
-    //   // const t = JSON.parse(temp);
-    //   // console.log(t._source.geolocation.lat);
+  load(res: object, s: string) {
+      const a = JSON.stringify(res);
+      const b = JSON.parse(a);
 
-    //   const a = JSON.stringify(res);
-    //   const b = JSON.parse(a);
+      for (const entry of b) {
+        const temp = JSON.stringify(entry);
+        const t = JSON.parse(temp);
 
-    //   for (const entry of b) {
-    //     const temp = JSON.stringify(entry);
-    //     const t = JSON.parse(temp);
+        const lat: number =  parseFloat(t._source.geolocation.lat);
+        const lng: number =  parseFloat(t._source.geolocation.lon);
+        const label: string = 'A';
+        const draggable: boolean = false;
 
-    //     const lat: number =  parseFloat(t._source.geolocation.lat);
-    //     const lng: number =  parseFloat(t._source.geolocation.lon);
-    //     const label: string = 'A';
-    //     const draggable: boolean = false;
-
-    //     this.markers.push({
-    //      lat, lng, label, draggable
-    //     });
-    //     // console.log('pushed ' + lat + ' ' + lng);
-    //   }
-    // });
+        this.markers.push({
+         lat, lng, label, draggable
+        });
+    }
   }
 
   onSubmit() {
@@ -109,11 +99,11 @@ export class HouseListingService {
       _id: string;
      }
 
-    const req = this.http.post<ResponseInterface>('http://174.64.102.57:3000/add', this.model)
+    const req = this.http.post<ResponseInterface>('http://10.136.189.31:3000/add', this.model)
     .subscribe(
       res => {
         console.log(res);
-        this.http.get('http://174.64.102.57:3000').subscribe(
+        this.http.get('http://10.136.189.31:3000').subscribe(
           res1 => {
             console.log(res1);
           },

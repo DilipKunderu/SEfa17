@@ -1,36 +1,45 @@
 <md-horizontal-stepper Linear="true">
-    <md-step [stepControl]="firstFormGroup">
+    <md-step>
         <form #subleaseForm01="ngForm">
             <ng-template mdStepLabel>Fill out initial details</ng-template>
             <!-- {{diagnostic}} -->
-            <md-grid-list cols="3" rowHeight="8:1">
-                <br>
-                <br>
-                <md-grid-tile>
-                    <label for="title" style="font-size:20px; margin-right:10px">Title</label>
-                    <md-form-field>
-                        <input mdInput id="accomodates1" placeHolder="accomodates" required [(ngModel)]="model.accomodates" name="accomodates" #name="ngModel">
-                    </md-form-field>
-                    <br>
-                    <div [hidden]="name.valid || name.pristine">
-                        Name is required
-                    </div>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <label for="title" style="font-size:20px; margin-right:10px">Zipcode</label>
-                    <md-form-field>
-                        <input mdInput id="zipcode1" placeHolder="Zipcode" class="form-control" required [(ngModel)]="model.zipcode" name="zipcode">
-                    </md-form-field>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <label for="title" style="font-size:20px; margin-right:10px">Description</label>
-                    <md-form-field>
-                        <textarea mdInput id="description1" placeholder="Description" class="form-control" required [(ngModel)]="model.description"
-                            name="description">
-                            </textarea>
-                    </md-form-field>
-                </md-grid-tile>
-            </md-grid-list>
+            <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" style="height:100%">
+                <md-card fxFlex="65">
+                        <md-card>
+                            <div></div>
+                            <div></div>
+                                <md-form-field>
+                                        <input mdInput 
+                                        id="accomodates" 
+                                        placeHolder="accomodates" 
+                                        required 
+                                        [(ngModel)]="model.accomodates" 
+                                        name="accomodates">
+                                    </md-form-field>   
+                            </md-card>
+                            <md-card>
+                                    <md-form-field>
+                                            <input mdInput 
+                                            id="zipcode" 
+                                            placeHolder="Zip Code" 
+                                            required 
+                                            [(ngModel)]="model.zipcode" 
+                                            name="zipcode">
+                                        </md-form-field>
+                            </md-card>
+                </md-card>
+                <md-card fxFlex="35">
+                        <md-form-field>
+                                <textarea mdInput 
+                                id="description" 
+                                placeholder="Description" 
+                                required 
+                                [(ngModel)]="model.description" 
+                                name="description">
+                                </textarea>
+                            </md-form-field>
+                    </md-card>
+            </div>
             <br>
             <br>
             <div style="float:right">
@@ -38,52 +47,45 @@
             </div>
         </form>
     </md-step>
-    <md-step [stepControl]="secondFormGroup">
-        <form>
+    <md-step>
+        <form #subleaseForm02="ngForm">
             <ng-template mdStepLabel>Details regarding unit</ng-template>
-            <md-grid-list cols="3" rowHeight=100px>
-                <md-grid-tile>
-                    <md-radio-group id="radiogrp1">
-                        <md-radio-button value="1">
-                            Entire home
-                        </md-radio-button>
-                        <br>
-                        <md-radio-button value="2">
-                            Private room
-                        </md-radio-button>
-                        <br>
-                        <md-radio-button value="3">
-                            Shared room
-                        </md-radio-button>
-                        <br>
-                        <md-radio-button value="4">
-                            Studio apartment
-                        </md-radio-button>
-                    </md-radio-group>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-select placeholder="bedrooms" [(ngModel)]="selectedValue2" name="count2">
-                        <md-option *ngFor='let count2 of numArray2' [value]="count2.value">
-                            {{count2.viewValue}}
-                        </md-option>
-                    </md-select>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-select placeholder="bathrooms" [(ngModel)]="selectedValue3" name="count3">
-                        <md-option *ngFor='let count3 of numArray3' [value]="count3.value">
-                            {{count3.viewValue}}
-                        </md-option>
-                    </md-select>
-                </md-grid-tile>
-            </md-grid-list>
-
+            <table>
+                <thead>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entry of homeTypes; let idx = index">
+                        <td>{{entry.description}}</td>
+                        <td>
+                            <input type="radio" name="radiogroup" (change)="onSelectionChange(entry)" [checked]="(idx === 0)" [value]="entry.id">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <md-select 
+            placeholder="bedrooms"
+            id="bedrooms" 
+            [(ngModel)]="model.bedrooms" 
+            name="bedrooms">
+                <md-option *ngFor='let count2 of numArray2' [value]="count2.viewValue">
+                    {{count2.viewValue}}
+                </md-option>
+            </md-select>
+            <md-select placeholder="bathrooms" 
+            [(ngModel)]="model.bathrooms" 
+            name="bathrooms"
+            id="bathrooms">
+                <md-option *ngFor='let count3 of numArray3' [value]="count3.viewValue">
+                    {{count3.viewValue}}
+                </md-option>
+            </md-select>
             <div style="float:right">
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
     </md-step>
-    <md-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup">
+    <md-step >
+        <form  #subleaseForm03="ngForm">
             <ng-template mdStepLabel>Amenities</ng-template>
             <md-grid-list cols="4" rowHeight=100px>
 
@@ -133,24 +135,47 @@
             </div>
         </form>
     </md-step>
-    <md-step [stepControl]="fourthFormGroup">
-        <form [formGroup]="fourthFormGroup">
+    <md-step>
+        <form  #subleaseForm04="ngForm">
             <ng-template mdStepLabel>Fill out your name</ng-template>
             <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
                 <md-card fxFlex="65">
                     <md-grid-list cols="1" rowHeight="200px">
                         <md-grid-tile>
                             <md-form-field>
-                                <input mdInput [mdDatepicker]="picker1" placeholder="Choose a start date">
-                                <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
-                                <md-datepicker #picker1></md-datepicker>
+                                <input mdInput 
+                                placeholder="rent"
+                                name="rent"
+                                id="rent" 
+                                required 
+                                [(ngModel)]="model.rent">
                             </md-form-field>
-
-                            <md-form-field>
-                                <input mdInput [mdDatepicker]="picker" placeholder="Choose an end date">
-                                <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-                                <md-datepicker #picker></md-datepicker>
-                            </md-form-field>
+                            {{this.model.rent}}
+                        </md-grid-tile>
+                        <md-grid-tile>
+                                <md-form-field>
+                                        <input mdInput 
+                                        placeholder="start date" 
+                                        id="start_date"
+                                        [mdDatepicker]="picker1" 
+                                        [(ngModel)]="model.start_date"
+                                        name="start_date" 
+                                        (ngModelChange)="onStartDateChange($event)">
+                                            <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+                                            <md-datepicker #picker1></md-datepicker>
+                                    </md-form-field>
+                                    
+                                    <md-form-field>
+                                        <input mdInput 
+                                        placeholder="end date"
+                                        id="end_date" 
+                                        [mdDatepicker]="picker"  
+                                        [(ngModel)]="model.end_date"
+                                        name="end_date" 
+                                        (ngModelChange)="onEndDateChange($event)">
+                                        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                                        <md-datepicker #picker></md-datepicker>
+                                    </md-form-field>
                         </md-grid-tile>
                         <md-grid-tile>
                             <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
@@ -159,36 +184,8 @@
 
                 </md-card>
                 <md-card fxFlex="30">
-                    <agm-map
-                    [latitude]="lat"
-                    [longitude]="lng"
-                    [zoom]="zoom"
-                    [disableDefaultUI]="false"
-                    [zoomControl]="false"
-                    (mapClick)="mapClicked($event)">
-                    
-                    <agm-marker 
-                        *ngFor="let m of markers; let i = index"
-                        (markerClick)="clickedMarker(m.label, i)"
-                        [latitude]="m.lat"
-                        [longitude]="m.lng"
-                        [label]="m.label"
-                        [markerDraggable]="m.draggable"
-                        (dragEnd)="markerDragEnd(m, $event)">
-                        
-                      <agm-info-window>
-                        <strong>Selected co-ordinates : ({{m.lat}}, {{m.lng}})</strong>
-                      </agm-info-window>
-                      
-                    </agm-marker>
-                    
-                    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
-                        [radius]="5000"
-                        [fillColor]="'red'"
-                        [circleDraggable]="true"
-                        [editable]="true">
-                    </agm-circle>
-                    
+                    <agm-map>
+
                     </agm-map>
                 </md-card>
             </div>

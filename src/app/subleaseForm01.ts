@@ -2,7 +2,6 @@ export class BasicDetails {
 
     constructor (
         public owner: string,
-        // public location: string,
         public zipcode: string,
         public description: string,
         public accomodates: string,
@@ -27,6 +26,9 @@ export class BasicDetails {
         public elevator: boolean,
         public pool: boolean,
         public gym: boolean,
-        public bathtub: boolean
+        public bathtub: boolean,
+        public rent: string,
+        public start_date: Date,
+        public end_date: Date
     ) {}
 }

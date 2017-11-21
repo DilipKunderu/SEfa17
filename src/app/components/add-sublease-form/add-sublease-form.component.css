@@ -18,3 +18,11 @@
       width: 100px;
       height: 1000px
   }
+
+  .formdiv{
+    background: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }

@@ -23,34 +23,13 @@ zoom: number = 8;
 lat: number = 51.673858;
 lng: number = 7.815982;
 
-markers: Marker[] = [
-  // {
-  //   lat: 51.673858,
-  //   lng: 7.815982,
-  //   label: 'A',
-  //   draggable: true
-  // },
-  // {
-  //   lat: 51.373858,
-  //   lng: 7.215982,
-  //   label: 'B',
-  //   draggable: false
-  // },
-  // {
-  //   lat: 51.723858,
-  //   lng: 7.895982,
-  //   label: 'C',
-  //   draggable: true
-  // }
-]
-
 clickedMarker(label: string, index: number) {
   console.log(`clicked the marker: ${label || index}`)
 }
 
 mapClicked($event: AGMMouseEvent) {
-  this.markers.length = 0;
-  this.markers.push({
+  this.data.markers.length = 0;
+  this.data.markers.push({
     lat: $event.coords.lat,
     lng: $event.coords.lng,
     label: 'D',
@@ -66,6 +45,30 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
   filesToUpload: Array<File> = [];
 
   selectedValue: string;
+
+  homeTypes: Array<object> = [
+    {
+      description: 'Apartment',
+      id: 1
+    },
+    {
+      description: 'Private room',
+      id: 2
+    },
+    {
+      description: 'Shared room',
+      id: 3
+    },
+    {
+      description: 'Studio Apartment',
+      id: 4
+    }
+  ];
+
+  selectedEntry: { [key: string]: any } = {
+    value: null,
+    description: null
+  };
 
     numArray1 = [
       {value: 'option-1', viewValue: '1'},
@@ -100,22 +103,22 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
       {value: 'option-5', viewValue: '5'},
     ];
 
-
   public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
-
-  date: Date  = new Date();
 
   res_id: string;
 
-  model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
-    true, false, true, true, false, true, true, true, true, true, true);
+  model = new BasicDetails(
+    '',
+   '10016',
+    'this is the description',
+     'accomodates is here',
+      '', '','', '', '', true, false, true, false, true, true,
+    true, false, true, true, false, true, true, true, true, true, true, 'rent11', new Date(), new Date());
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  fifthFormGroup: FormGroup;
-  sixthFormGroup: FormGroup;
 
   public searchControl: FormControl;
 
@@ -128,6 +131,11 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
     private data: HouseListingService) {}
 
   ngOnInit() {
+      // select the first one
+      if(this.homeTypes) {
+        this.onSelectionChange(this.homeTypes[0]);  
+      }
+
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
@@ -146,12 +154,14 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
     this.fourthFormGroup = this._formBuilder.group({
       fourthCtrl: ['', Validators.required]
     });
-    this.fifthFormGroup = this._formBuilder.group({
-      fifthCtrl: ['', Validators.required]
-    });
-    this.sixthFormGroup = this._formBuilder.group({
-      sixthCtrl: ['', Validators.required]
-    });
+  }
+
+  onSelectionChange(entry) {
+    // clone the object for immutability
+    this.selectedEntry = Object.assign({}, this.selectedEntry, entry);
+    // console.log(this.selectedEntry.description);
+    this.model.roomtype = this.selectedEntry.description;
+    // console.log(this.model.roomtype);
   }
 
   upload() {
@@ -172,8 +182,6 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
     formData.append('title', 'sefwefwe');
 
     console.log('form data variable :   ' + formData.toString());
-    // formData.append("uploads[]", files[0], files[0]['name']);
-    // this.address.documents = files.toString();
 
         this.http.post(URL, formData)
         .subscribe(files1 => console.log('files', files1))
@@ -183,38 +191,12 @@ markerDragEnd(m: Marker, $event: MouseEvent) {
       this.filesToUpload = <Array<File>>fileInput.target.files;
     }
 
-  onDateInput() {
-    console.log(this.date);
-   }
-
-  onDateChange() { }
-
-  // onSubmit() {
-  //   interface ResponseInterface {
-  //     _id: string;
-  //    }
-
-  //   const req = this.http.post<ResponseInterface>('http://174.64.102.57:3000/add', this.model)
-  //   .subscribe(
-  //     res => {
-  //       console.log(res);
-  //       this.http.get('http://174.64.102.57:3000').subscribe(
-  //         res1 => {
-  //           console.log(res1);
-  //         },
-  //         err1 => {
-  //           console.log(err1);
-  //         }
-  //       );
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
-  // TODO: Remove this when we're done
-
-  // get diagnostic() { return JSON.stringify(this.model); }
+  onStartDateChange() { 
+    console.log(this.model.start_date);
+  }
+  onEndDateChange() { 
+    console.log(this.model.end_date);
+  }
 }
 
 
