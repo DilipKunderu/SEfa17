@@ -26,3 +26,8 @@
     justify-content: space-around;
     align-items: center;
   }
+
+  agm-map {
+    height: 580px;
+    width: 450px;
+  }

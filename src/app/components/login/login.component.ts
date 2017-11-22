@@ -10,6 +10,8 @@ import {
   Router, ActivatedRoute
 }
 from '@angular/router';
+import { HouseListingService } from '../../house-listing.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +21,8 @@ from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-      private router: Router, private authenticationService: AuthenticationService) {}
+      private router: Router, private authenticationService: AuthenticationService,
+    private listing: HouseListingService) {}
 
   ngOnInit() {
       this.authenticationService.logout();
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
           .subscribe(
               data => {
                   this.router.navigate(["/"]);
+                    this.listing.setLogin();
               },
               error => {
                   alert(error);

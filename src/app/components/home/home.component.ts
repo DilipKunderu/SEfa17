@@ -15,6 +15,7 @@ import { HouseListingService } from './../../house-listing.service';
   styleUrls: ['./home.component.css']
 })
 
+
 export class HomeComponent implements OnInit {
   typeControl = new FormControl('', [Validators.required]);
   
@@ -131,7 +132,6 @@ export class HomeComponent implements OnInit {
       //     const lng: number =  parseFloat(t._source.geolocation.lon);
       //     const label: string = 'T2';
       //     const draggable: boolean = false;
-
       //     this.data.markers.push({
       //     lat: lat,
       //     lng: lng,
@@ -159,7 +159,6 @@ export class HomeComponent implements OnInit {
      //     const lng: number =  parseFloat(t._source.geolocation.lon);
      //     const label: string = 'T2';
      //     const draggable: boolean = false;
-
      //     this.data.markers.push({
      //     lat: lat,
      //     lng: lng,

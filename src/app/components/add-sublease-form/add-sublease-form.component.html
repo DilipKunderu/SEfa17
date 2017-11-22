@@ -97,54 +97,10 @@
                                 ngDefaultControl 
                                 (change)="onToggleChange(amenities.indexOf(entry))" 
                                 [checked]="entry.value"></md-slide-toggle>
-                               {{entry.value}}
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <!-- <md-grid-list cols="4" rowHeight=100px>
-
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Internet
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Air conditioner
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Washer/Dryer
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Free parking on premises
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Private bathroom
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Wheelchair accessible
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Pool
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        gym
-                    </md-slide-toggle>
-                </md-grid-tile>
-            </md-grid-list> -->
             <div style="float:right">
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
@@ -199,8 +155,24 @@
 
                 </md-card>
                 <md-card fxFlex="30">
-                    <agm-map>
-
+                    <agm-map
+                        [latitude]="lat"
+                        [longitude]="lng"
+                        [disableDefaultUI]="false"
+                        [zoomControl]="false"
+                        (mapClick)="mapClicked($event)">
+                            <agm-marker
+                                *ngFor="let m of markers; let i = index"
+                                (markerClick)="clickedMarker(m.label, i)"
+                                [latitude]="m.lat"
+                                [longitude]="m.lng"
+                                [label]="m.label"
+                                [markerDraggable]="m.draggable"
+                                (dragEnd)="markerDragEnd(m, $event)">
+                                <agm-info-window>
+                                    <strong>Selected co-ordinates : ({{m.lat}}, {{m.lng}})</strong>
+                                </agm-info-window>            
+                            </agm-marker>
                     </agm-map>
                 </md-card>
             </div>

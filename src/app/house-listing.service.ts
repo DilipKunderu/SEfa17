@@ -10,28 +10,10 @@ import {
 @Injectable()
 export class HouseListingService {
   //declarations
-  public render: boolean = false;
+  public isLoggedIn: boolean = false;
+
   public listingArray: Array<any> = [];
-  public markers: Array<Marker> = [
-    {
-		  lat: 51.673858,
-		  lng: 7.815982,
-		  label: 'A',
-		  draggable: true
-	  },
-	  {
-		  lat: 51.373858,
-		  lng: 7.215982,
-		  label: 'B',
-		  draggable: false
-	  },
-	  {
-		  lat: 51.723858,
-		  lng: 7.895982,
-		  label: 'C',
-		  draggable: true
-	  }
-  ];
+  public markers: Array<Marker> = [];
   public URL = 'http://10.136.39.201:3000/';
   res: Object;
 
@@ -44,35 +26,11 @@ export class HouseListingService {
     injector: Injector) {
       setTimeout(()=>this.http = injector.get(HttpClient));
 
-    this.http.get('http://70.171.46.158:3000/leasemetadata/')
+    this.http.get('http://70.171.46.158:3000/lease/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.listingArray, res);
     });
-  }
-
-  getLatLong() {
-    for(const res of this.listingArray) {
-      const a = JSON.stringify(res);
-      const b = JSON.parse(a);
-
-      for (const entry of b) {
-        const temp = JSON.stringify(entry);
-        const t = JSON.parse(temp);
-
-        const lat: number =  parseFloat(t._source.geolocation.lat);
-        const lng: number =  parseFloat(t._source.geolocation.lon);
-        const label: string = 'A';
-        const draggable: boolean = false;
-
-        this.markers.push({
-         lat, lng, label, draggable
-        });
-        this.render = true;
-        console.log('pushed ' + lat + ' ' + lng);
-      }
-
-    }
   }
 
   load(res: object, s: string) {
@@ -94,29 +52,15 @@ export class HouseListingService {
     }
   }
 
-  // onSubmit() {
-  //   interface ResponseInterface {
-  //     _id: string;
-  //    }
-
-  //   const req = this.http.post<ResponseInterface>('http://10.136.189.31:3000/add', this.model)
-  //   .subscribe(
-  //     res => {
-  //       console.log(res);
-  //       this.http.get('http://10.136.189.31:3000').subscribe(
-  //         res1 => {
-  //           console.log(res1);
-  //         },
-  //         err1 => {
-  //           console.log(err1);
-  //         }
-  //       );
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
+  setLogin() {
+    this.isLoggedIn = !(this.isLoggedIn);
+    if (this.isLoggedIn) {
+      console.log('logged in');
+    }
+    else {
+      console.log('logged out');
+    }
+  }
 }
 
 interface Marker {
