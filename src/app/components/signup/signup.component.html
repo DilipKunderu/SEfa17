@@ -1,29 +1,21 @@
 <div fxLayout fxLayoutAlign="center center" style="height:100%;display: flex;
 align-items: center;">
     <div fxLayout="row" fxLayoutAlign="center center">
-        <md-card style="width:300px">
+        <md-card style="width:500px">
 
             <form action="/home" #form="ngForm" (ngSubmit)="signUpSubmit(form.value)" ngNativeValidate>
                 <div fxLayout="column">
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <!-- <md-icon>email</md-icon> -->
-                        <md-input-container style="width: 100%; margin-right:0px;" hideRequiredMarker>
+                        <md-input-container style="width: 80%; margin-right:0px;" hideRequiredMarker>
 
-                            <input mdInput ngModel ng-model="user.firstname" name="firstname" placeholder="First name" required>
-
-                        </md-input-container>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <!-- <md-icon>email</md-icon> -->
-                        <md-input-container style="width: 100%; margin-right:0px;" hideRequiredMarker>
-
-                            <input mdInput ngModel ng-model="user.lastname" name="lastname" placeholder="Last name" required>
+                            <input mdInput ngModel ng-model="user.name" name="name" placeholder="Name" required>
 
                         </md-input-container>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <!-- <md-icon>email</md-icon> -->
-                        <md-input-container style="width: 100%; margin-right:0px;" hideRequiredMarker>
+                        <md-input-container style="width: 80%; margin-right:0px;" hideRequiredMarker>
 
                             <input type="email" mdInput ngModel ng-model="user.email" name="email" placeholder="E-mail" required>
 
@@ -31,7 +23,7 @@ align-items: center;">
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <!-- <md-icon>perm_identity</md-icon> -->
-                        <md-input-container style="width: 100%; margin:auto auto;" hideRequiredMarker>
+                        <md-input-container style="width: 80%; margin:auto auto;" hideRequiredMarker>
 
                             <input mdInput ngModel ng-model="user.id" placeholder="User name" name="id" required>
 
@@ -39,21 +31,21 @@ align-items: center;">
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <!-- <md-icon>vpn_key</md-icon> -->
-                        <md-input-container style="width: 100%; margin:auto auto" hideRequiredMarker>
+                        <md-input-container style="width: 80%; margin:auto auto" hideRequiredMarker>
 
                             <input type="password" mdInput ngModel ng-model="user.password" placeholder="Password" name="password" required>
 
                         </md-input-container>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
-                        <md-input-container style="width: 100%; margin:auto auto" hideRequiredMarker>
+                        <md-input-container style="width: 80%; margin:auto auto" hideRequiredMarker>
 
                             <input type="password" mdInput ngModel ng-model="user.cpassword" placeholder="Confirm Password" name="cpassword" required>
 
                         </md-input-container>
                     </div>
                     <md-dialog-actions align="end">
-                        <button md-button type="submit" color="accent"><b>Register</b></button>
+                        <button md-raised-button type="submit" color="accent"><b>Register</b></button>
                     </md-dialog-actions>
                 </div>
             </form>
