@@ -95,11 +95,10 @@
                         <td>
                                 <md-slide-toggle 
                                 ngDefaultControl 
-                                (change)="onToggleChange($event)" 
-                                [checked]="device"></md-slide-toggle>
-                               {{device}}
+                                (change)="onToggleChange(amenities.indexOf(entry))" 
+                                [checked]="entry.value"></md-slide-toggle>
+                               {{entry.value}}
                         </td>
-
                     </tr>
                 </tbody>
             </table>

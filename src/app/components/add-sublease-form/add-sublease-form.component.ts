@@ -7,7 +7,6 @@ import { HouseListingService } from '../../house-listing.service';
 import { BasicDetails } from '../../subleaseForm01';
 import { MouseEvent as AGMMouseEvent } from '@agm/core';
 
-
 const URL = 'http://70.171.46.158:3000/leasemetadata';
 
 @Component({
@@ -19,24 +18,48 @@ const URL = 'http://70.171.46.158:3000/leasemetadata';
 export class AddSubleaseFormComponent implements OnInit {
   device:number = 1;
 
-  amenities: Array<object> = [
+  amenities: Array<any> = [
     {
-      amenity: 'abc',
+      amenity: 'Internet',
+      value: 1
+    },
+    {
+      amenity: 'Air conditioning',
       value: 0
     },
     {
-      amenity: 'def',
+      amenity: 'Washer/Dryer',
       value: 1
+    },
+    {
+      amenity: 'Free parking on premises',
+      value: 0
+    },
+    {
+      amenity: 'Wheelchair Accessible',
+      value: 0
+    },
+    {
+      amenity: 'Private bathroom',
+      value: 0
+    },
+    {
+      amenity: 'Pool',
+      value: 0
+    },
+    {
+      amenity: 'Gym',
+      value: 0
     },
   ];
   
-    onToggleChange(value) {
-          if (value.checked == true) {
-            this.device = 1;
-            console.log(1);
-          } else {
-            this.device = 0;
+    onToggleChange(x: number) {
+          if (this.amenities[x].value == 1) {
+            this.amenities[x].value = 0;
             console.log(0);
+          } else {
+            this.amenities[x].value = 1;
+            console.log(1);
           }
       }
 
