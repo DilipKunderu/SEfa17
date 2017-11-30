@@ -69,12 +69,9 @@ router.post('/lease', upload.any(), function (req, res, next) {
 });
 
 router.post("/signup", function(req, res) {
-    console.log(req.body.email)
-    if(req.body.name == "" || req.body.email == "")
-        return res.status(400).send("No data");
     dbHelper.dbSignup(req, res, function (data, response) {
-        //if (err)
-          //  return res.status(400).send("Not Signed up");
+        if (err)
+            return res.status(400).send("Not Signed up");
         return res.status(200).send("Signed up");
     });
 });
@@ -191,24 +188,22 @@ router.get("/price", function(req, res) {
     })
 });
 
-router.post('/sendemail',function(req,res){
-    console.log(req.body)
+router.get('/sendemail',function(req,res){
 	var mailOptions={
-		to : req.body.to,
-		subject : req.body.subject,
-		text : req.body.text
+		to : req.query.to,
+		subject : req.query.subject,
+		text : req.query.text
 	}
 	console.log(mailOptions);
-    
-    smtpTransport.sendMail(mailOptions, function(error, response){
-        if(error){
-                console.log(error);
-            res.end("error");
-        }else{
-                console.log("Message sent: " + response.message);
-            res.end("sent");
-            }
-    });
+	smtpTransport.sendMail(mailOptions, function(error, response){
+   	 if(error){
+        	console.log(error);
+		res.end("error");
+	 }else{
+        	console.log("Message sent: " + response.message);
+		res.end("sent");
+    	 }
+});
 });
 
 // Commenting the following API for now; this will be used once database insert 
