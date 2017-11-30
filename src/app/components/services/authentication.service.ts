@@ -10,21 +10,26 @@ import {
     Observable
 }
 from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
-
+import 'rxjs/add/operator/map';
+import {
+    Login
+}
+from '../models/index';
+// import {AppComponent} from '../../app.component'
 @Injectable()
 export class AuthenticationService {
     constructor(private http: Http) {}
 
-    login(username: string, password: string) {
-        return this.http.post('/api/authenticate', JSON.stringify({
-                username: username,
-                password: password
-            }))
+    login(login: Login) {
+        return this.http.post('http://192.168.0.18:3000/login', login)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
-                let user = response.json();
-                if (user && user.token) {
+                let user = response.toString();
+                if (user && response.json().token) {
+                  
+                    // this.a.loginhide();
+            //         let el = this.elementRef.nativeElement;
+            // var s = this.a.select(el).
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
@@ -34,6 +39,7 @@ export class AuthenticationService {
     }
 
     logout() {
+
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     }
