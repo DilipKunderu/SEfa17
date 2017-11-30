@@ -6,20 +6,29 @@ import {
 from '@angular/router';
 import { HouseListingService } from './../../house-listing.service';
 import { HttpClient } from '@angular/common/http';
-
+import {
+  Book
+}
+from '../models/index';
+// import {
+//   MailService
+// }
+// from '../services/index';
 @Component({
   selector: 'app-listing-detail',
   templateUrl: './listing-detail.component.html',
-  styleUrls: ['./listing-detail.component.css']
+  styleUrls: ['./listing-detail.component.css'],
+  providers: [Book]
 })
 
 
 export class ListingDetailComponent implements OnInit {
   res: Object;
-  
+  public email : string;
+  public sender : string;
   constructor(private data: HouseListingService, private route: ActivatedRoute,  private router: Router, private http: HttpClient) {  
     var  Listing: ListingDetailComponent;
-    var URL = 'http://192.168.1.243:3000/';
+    var URL = 'http://192.168.0.18:3000/';
   
     this.route.params.subscribe(params => {  
       const id = (params['id']);
@@ -28,7 +37,7 @@ export class ListingDetailComponent implements OnInit {
        this.res = res;
        const a = JSON.stringify(res);
        const b = JSON.parse(a);
-
+        this.email = b._source.email;
         var title:string = b._source.title;
         var title1 = document.getElementById("title");
         title1.className = "title";
@@ -42,7 +51,7 @@ export class ListingDetailComponent implements OnInit {
 
         var imgsrc:string = b._source.images[0];
         var img1 = document.getElementById("img");
-        var u = "http://192.168.1.243:3000/uploads/" + imgsrc;
+        var u = "http://192.168.0.18:3000/uploads/" + imgsrc;
         img1.setAttribute('style',"background-image:url("+u+");background-size: 100% 100%;background-repeat: no-repeat;");
         
 
@@ -140,15 +149,28 @@ export class ListingDetailComponent implements OnInit {
         waccess1.appendChild(waccess2);
         
         });
+        // this.http.get(URL+'get_id?id='+id)
+        // .subscribe(res => {
+        //  this.res = res;
+        //  const a = JSON.stringify(res);
+        //  const b = JSON.parse(a);
+        //   this.email = b._source.email; });
         });
-          
+       
      
   }
   
   ngOnInit() {
     
   }
-  
+  bookHouse(form:any){
+    var book = new Book();
+  book.to="this.email";
+  book.subject = "Lease request";
+  book.text = this.sender+"wants to take a lease. Details:" + form;
+   this.http.post('http://192.168.0.18:3000/sendemail', book).subscribe();
+    alert(book.to+""+form.checkInDate);
+  }
   
   guests = [
     {value: '1'},
