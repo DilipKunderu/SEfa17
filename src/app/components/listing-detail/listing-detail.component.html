@@ -51,7 +51,7 @@
         </md-sidenav-container>
     </md-card-content>
 
-    <md-card fxFlex="35%" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="10" layout-align="center center" style="height:300px;padding:10px;">
+    <md-card fxFlex="35%" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="10" layout-align="center center" style="height:320px;padding:10px;">
         <div style="padding: 10px">
             <form fxFlex ngNativeValidate #myForm="ngForm" (ngSubmit)="bookHouse(myForm.value)">
 
@@ -78,6 +78,11 @@
                             Guests: {{ guest.value }}
                         </md-option>
                     </md-select>
+                    <md-form-field style="width:100%;margin-top:15px">
+                    <!-- <md-input-container style="width: 100%; margin-top:5px"> -->
+                     <input mdInput ngModel ngModel name="email" placeholder="Your email address" name="email" required>
+                     <!-- </md-input-container> -->
+                    </md-form-field>
                     <md-dialog-actions align="center" style="padding-top:24px">
                         <button md-button style="width:75%;background-color:red;color:#ffffff" ><b>Book</b></button>
                     </md-dialog-actions>

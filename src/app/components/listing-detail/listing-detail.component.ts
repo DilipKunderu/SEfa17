@@ -167,9 +167,8 @@ export class ListingDetailComponent implements OnInit {
     var book = new Book();
   book.to="this.email";
   book.subject = "Lease request";
-  book.text = this.sender+"wants to take a lease. Details:" + form;
-   this.http.post('http://192.168.0.18:3000/sendemail', book).subscribe();
-    alert(book.to+""+form.checkInDate);
+  book.text = "Someone requested for details about the lease.\n Details: Email:" + form.email +"\nCheck-in Date:"+form.checkInDate+"\nCheck-out Date:"+form.checkOutDate;
+  this.http.post('http://192.168.0.18:3000/sendemail', book).subscribe();
   }
   
   guests = [
