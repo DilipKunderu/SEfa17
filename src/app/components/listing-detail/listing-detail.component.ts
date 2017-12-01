@@ -28,7 +28,7 @@ export class ListingDetailComponent implements OnInit {
   public sender : string;
   constructor(private data: HouseListingService, private route: ActivatedRoute,  private router: Router, private http: HttpClient) {  
     var  Listing: ListingDetailComponent;
-    var URL = 'http://192.168.0.18:3000/';
+    var URL = 'http://192.168.0.13:3000/';
   
     this.route.params.subscribe(params => {  
       const id = (params['id']);
@@ -51,7 +51,7 @@ export class ListingDetailComponent implements OnInit {
 
         var imgsrc:string = b._source.images[0];
         var img1 = document.getElementById("img");
-        var u = "http://192.168.0.18:3000/uploads/" + imgsrc;
+        var u = "http://192.168.0.13:3000/uploads/" + imgsrc;
         img1.setAttribute('style',"background-image:url("+u+");background-size: 100% 100%;background-repeat: no-repeat;");
         
 
@@ -149,26 +149,19 @@ export class ListingDetailComponent implements OnInit {
         waccess1.appendChild(waccess2);
         
         });
-        // this.http.get(URL+'get_id?id='+id)
-        // .subscribe(res => {
-        //  this.res = res;
-        //  const a = JSON.stringify(res);
-        //  const b = JSON.parse(a);
-        //   this.email = b._source.email; });
-        });
-       
-     
+        });   
   }
   
   ngOnInit() {
     
   }
   bookHouse(form:any){
-    var book = new Book();
-  book.to="this.email";
+  var book = new Book();
+  book.to=this.email;
   book.subject = "Lease request";
   book.text = "Someone requested for details about the lease.\n Details: Email:" + form.email +"\nCheck-in Date:"+form.checkInDate+"\nCheck-out Date:"+form.checkOutDate;
   this.http.post('http://192.168.0.18:3000/sendemail', book).subscribe();
+  
   }
   
   guests = [
