@@ -21,18 +21,18 @@ export class AuthenticationService {
     constructor(private http: Http) {}
 
     login(login: Login) {
-        return this.http.post('http://192.168.0.18:3000/login', login)
+        return this.http.post('http://174.64.102.57:3000/login', login)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.toString();
-                if (user && response.json().token) {
+                // if (user && response.json().token) {
                   
                     // this.a.loginhide();
             //         let el = this.elementRef.nativeElement;
             // var s = this.a.select(el).
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
-                }
+                // }
 
                 return user;
             });
