@@ -74,6 +74,8 @@ var dbMetadataInsert = function(req, res, imageFileNames, callback) {
 }
 
 var dbSignup = function(req, res, callback) {
+    
+
     var uuid = new ObjectId();
     const secret = req.body.password;
     const hash = crypto.createHmac('sha256', 'secret')
@@ -85,7 +87,7 @@ var dbSignup = function(req, res, callback) {
         id: uuid.toString(),
         type: 'info',
         body: {
-            "username":req.body.username,
+            "username":req.body.name,
             "email":req.body.email,
             "password":hash
         }
@@ -360,7 +362,7 @@ var dbLogin = function(req, res, callback) {
             }
         }
     }
-
+    jsonData.query.query_string.query = "(email:"+req.body.email+")";
     rest.postJson('http://localhost:9200/housing/info/_search?pretty', jsonData).
     on('complete', function(data, response) {
         callback(data, response);
