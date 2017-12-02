@@ -10,7 +10,7 @@ import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { MouseEvent as AGMMouseEvent } from '@agm/core';
 
-const URL = 'http://70.171.46.158:3000/leasemetadata';
+const URL = 'http://174.64.102.57:3000/leasemetadata';
 
 @Component({
   selector: 'app-add-sublease-form',
@@ -244,7 +244,7 @@ export class AddSubleaseFormComponent implements OnInit {
 
     console.log('form data variable :   ' + formData.toString());
 
-    this.http.post('http://70.171.46.158:3000/lease'
+    this.http.post('http://174.64.102.57:3000/lease'
       , formData)
       .subscribe(files1 => console.log('files', files1))
   }

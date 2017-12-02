@@ -14,7 +14,7 @@ export class HouseListingService {
 
   public listingArray: Array<any> = [];
   public markers: Array<Marker> = [];
-  public URL = 'http://10.136.39.201:3000/';
+  public URL = 'http://174.64.102.57:3000/';
   res: Object;
 
   model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
@@ -26,7 +26,7 @@ export class HouseListingService {
     injector: Injector) {
       setTimeout(()=>this.http = injector.get(HttpClient));
 
-    this.http.get('http://70.171.46.158:3000/lease/')
+    this.http.get('http://174.64.102.57:3000/lease/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.listingArray, res);

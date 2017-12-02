@@ -21,7 +21,7 @@ export class AuthenticationService {
     constructor(private http: Http) {}
 
     login(login: Login) {
-        return this.http.post('http://192.168.0.18:3000/login', login)
+        return this.http.post('http://174.64.102.57:3000/login', login)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.toString();
