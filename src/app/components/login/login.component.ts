@@ -39,7 +39,10 @@ export class LoginComponent implements OnInit {
                     this.app.loginhide();
               },
               error => {
-                  alert(error);
+                  alert("Email or password incorrect" + error);
+                  var resetForm =<HTMLFormElement>document.getElementById("loginform");
+                  resetForm.reset();
+                  return;
               });
   }
 
