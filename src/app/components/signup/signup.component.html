@@ -3,7 +3,7 @@ align-items: center;">
     <div fxLayout="row" fxLayoutAlign="center center">
         <md-card style="width:500px">
 
-            <form action="/home" #form="ngForm" (ngSubmit)="signUpSubmit(form.value)" ngNativeValidate>
+            <form id = "signupForm" action="/home" #form="ngForm" (ngSubmit)="signUpSubmit(form.value)" ngNativeValidate>
                 <div fxLayout="column">
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <!-- <md-icon>email</md-icon> -->
@@ -25,14 +25,14 @@ align-items: center;">
                         <!-- <md-icon>vpn_key</md-icon> -->
                         <md-input-container style="width: 80%; margin:auto auto" hideRequiredMarker>
 
-                            <input [type] = 'password' mdInput ngModel ng-model="user.password" placeholder="Password" name="password" required>
+                            <input mdInput ngModel ng-model="user.password"  placeholder="Password" name="password" required>
 
                         </md-input-container>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <md-input-container style="width: 80%; margin:auto auto" hideRequiredMarker>
 
-                            <input mdInput ngModel ng-model="user.cpassword" placeholder="Confirm Password" name="cpassword" required>
+                            <input mdInput ngModel ng-model="user.cpassword"  placeholder="Confirm Password" name="cpassword" required>
 
                         </md-input-container>
                     </div>

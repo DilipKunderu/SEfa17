@@ -26,6 +26,12 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
 
   signUpSubmit(form: any) {
+    if(form.password != form.cpassword){
+      alert("Password doernot match with confirm password")
+      var resetForm =<HTMLFormElement>document.getElementById("signupForm");
+      resetForm.reset();
+      return;
+    }
       this.userService.create(form)
           .subscribe(
               data => {

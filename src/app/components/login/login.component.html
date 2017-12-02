@@ -2,7 +2,7 @@
 align-items: center;">
     <div fxLayout="row" fxLayoutAlign="center center">
         <md-card style="width:500px">
-            <form action="/home" #form="ngForm" (ngSubmit)="loginSubmit(form.value)" ngNativeValidate>
+            <form id = "loginform" action="/home" #form="ngForm" (ngSubmit)="loginSubmit(form.value)" ngNativeValidate>
                 <div fxLayout="column">
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <!-- <md-icon>perm_identity</md-icon> -->
