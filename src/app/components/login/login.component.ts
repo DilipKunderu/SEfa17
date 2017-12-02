@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
       this.authenticationService.logout();
   }
 
-  loginSubmit(form: any) {
-    
+  loginSubmit(form: any) {    
       this.authenticationService.login(form)
           .subscribe(
               data => {
@@ -39,7 +38,7 @@ export class LoginComponent implements OnInit {
                     this.app.loginhide();
               },
               error => {
-                  alert("Email or password incorrect" + error);
+                  alert("Email or password incorrect: " + error);
                   var resetForm =<HTMLFormElement>document.getElementById("loginform");
                   resetForm.reset();
                   return;
