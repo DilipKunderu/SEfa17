@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
               data => {
                   this.router.navigate(["/home"]);
                     this.listing.setLogin();
-                    this.app.loginhide();
+                    // this.app.loginhide();
               },
               error => {
                   alert("Email or password incorrect: " + error);

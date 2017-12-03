@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class AppComponent implements OnInit {
   isLoggedIn:boolean;
+
   constructor(
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
@@ -33,8 +34,9 @@ export class AppComponent implements OnInit {
     document.getElementById("signup").style.visibility = "hidden";
     document.getElementById("logout").style.visibility = "visible";
   }
+  
   ngOnInit() {
-    document.getElementById("logout").style.visibility = "hidden";
+    // document.getElementById("logout").style.visibility = "hidden";
   }
 
 logout(){
