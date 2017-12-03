@@ -45,7 +45,7 @@
 
 ## Running Back-End Tests
   - Make sure you have installed mocha globally using command `npm install mocha -g`
-  - Go into backend test floder and open the command prompt
+  - Go into backend test folder and open the command prompt
   - Run backend tests using command `"npm test"`
 
 ## Documentation
