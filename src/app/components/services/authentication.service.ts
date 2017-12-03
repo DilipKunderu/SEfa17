@@ -24,7 +24,11 @@ export class AuthenticationService {
     login(login: Login) {
         return this.http.post('http://192.168.2.24:3000/login', login)
             .map((response: Response) => {
+                const a = JSON.stringify(response);
+                const b = JSON.parse(a);
+                this.data.userDetail = b._body;
                 let user = response.toString();
+                // console.log(user);
                 localStorage.setItem('currentUser', JSON.stringify(user));
 
                 return user;

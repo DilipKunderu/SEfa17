@@ -8,14 +8,8 @@
         <div fxFlex=30>
             <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button> 
             <span fxFlex></span>
-            <div *ngIf="false; else lala">
-              <button md-button [mdMenuTriggerFor]="menu">listings</button>
-              <md-menu #menu="mdMenu">
-                <md-list *ngFor="let data of (data.listingArray ? data.listingArray.slice(0,10): []); let i = index" [routerLink]="['/listing-detail', {'id':data._id}]"  routerLinkActive="active">
-                  <md-list-item>{{data._source.title}}</md-list-item>
-                </md-list>
-              </md-menu>
-              <span fxFlex></span>
+            <div *ngIf="data.isLoggedIn; else lala">
+              <button md-button routerLink="/user-list" routerLinkActive="active">{{data.userDetail}}</button>
               <button md-button id="logout" (click)="logout()" routerLinkActive="active">Logout</button>
             </div>
             <ng-template #lala>

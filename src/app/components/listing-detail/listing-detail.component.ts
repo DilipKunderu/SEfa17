@@ -26,7 +26,13 @@ export class ListingDetailComponent implements OnInit {
   res: Object;
   public email : string;
   public sender : string;
-  constructor(private data: HouseListingService, private route: ActivatedRoute,  private router: Router, private http: HttpClient) {  
+
+  constructor(
+    private data: HouseListingService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private http: HttpClient
+  ) {  
     var  Listing: ListingDetailComponent;
     var URL = 'http://192.168.2.24:3000/';
   

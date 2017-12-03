@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
           .subscribe(
               data => {
                   this.router.navigate(["/home"]);
+                  // console.log(data);
+                  // this.listing.userDetail = data;
                     this.listing.setLogin();
                     // this.app.loginhide();
               },

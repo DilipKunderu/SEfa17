@@ -11,6 +11,7 @@ import {
 export class HouseListingService {
   //declarations
   public isLoggedIn: boolean = false;
+  public userDetail: string;
 
   public listingArray: Array<any> = [];
   public markers: Array<Marker> = [];

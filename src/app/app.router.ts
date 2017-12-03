@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
-
+import { UserListComponent } from './components/user-list/user-list.component';
 
 const router: Routes = [
     {path: '',
@@ -26,7 +26,11 @@ const router: Routes = [
     {path: 'listing-detail',
         component: ListingDetailComponent},
         {path: 'add-sublease-form',
-        component: AddSubleaseFormComponent}
+        component: AddSubleaseFormComponent},
+    {
+        path: 'user-list',
+        component: UserListComponent
+    }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);
