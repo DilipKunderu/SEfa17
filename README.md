@@ -1,320 +1,64 @@
 [![Build Status](https://img.shields.io/travis/DilipKunderu/SEfa17.svg?style=flat-square)](https://travis-ci.org/DilipKunderu/SEfa17)
 
-# GatorHousing - Apartment / sublease finder Website
-
-	Online marketplace enabling people to lease or rent apartments
-
-## Getting Started
-
-    The following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
- `` 1) 'Angular 4'
-    2)  Node.JS
-    3)  Elasticsearch``
-
-### Installing
-
-    A step by step series that tells you how to get a development env running
-
-```
-    1) Clone the repository and go to the /backend folder
-    2) Run npm install -> This will download all the dependencies
-    3) Run npm start to start the server.
-    4) Open localhsot:3000 and it should print a welcome message 
-```
-
-
-## Running the tests
-
-    To run the automated test cases for this system
-
-```
-    Go to the /backend folder and run npm test command. This should start the automated test cases. 
-```
-
-
-
-## Backend API Description
-
-**1) Apartment/House sublease ADD API**
-----
-  This API is used to add or post new sublease apartments.
-
-* **URL**
-
-  `http:// IP Address:3000/add`
-
-* **Method:**
-  
-     `POST`
-  
-*  **URL Params**
-
-   `None`
-
-* **Data Params**
-
-    `{
-	"title": "some title",
-	"owner": "saptarshi",
-	"location": "gainesville, Florida, USA",
-	"zipcode": 32608,
-	"description": "brief description about the apartment",
-	"geolocation" : {
-            "lat" : 40.12,
-            "lon" : -71.34
-    },
-	"details": {
-		"accomodates": 1,
-		"bathrooms": 1,
-		"bathroomtype": "private",
-		"bedrooms": 2,
-		"studio": false,
-		"beds": 2,
-		"petfriendly": true,
-		"propertytype": "private",
-		"roomtype": "private room"
-	},
-	"amenities": {
-		"kitchen": true,
-		"internet": false,
-		"tv": true,
-		"essentials": false,
-		"shampoo": true,
-		"heating": false,
-		"airconditioning": true,
-		"washer": true,
-		"dryer": true,
-		"free_parking_on_premises": true,
-		"free_parking_on_street": false,
-		"paid_parking_off_premises": false,
-		"wireless_internet": true,
-		"cable_tv": true,
-		"family_or_kid_friendly": true,
-		"suitable_for_events": false,
-		"smoking_allowed": false,
-		"wheelchair_accessible": true,
-		"elevator": true,
-		"indoor_fireplace": false,
-		"buzzer_or_wireless_intercom": false,
-		"doorman": false,
-		"pool": true,
-		"hottub": true,
-		"gym": true,
-		"hangers": true,
-		"laptop_friendly_workspace": true,
-		"private_entrance": false,
-		"window_guards": false,
-		"bathtub": true
-	},
-	"house_roles": ["No smoking",
-		"No parties or events",
-		"Check in time is 12PM (noon) - 5PM"
-	]
-}`
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `{ id : the identifier of the newly listed apartment }`
+ # Gator Housing - Apartment/Sublease finder website.
  
-* **Error Response:**
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
-
-  OR
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{ error : "JSON Invalid" }`
-
-* **Sample Call:**
-
-    `curl -H "Content-Type: application/json" -X POST -d '<your json data>' http://127.0.0.1:3000/add`
-
-
-**2) Apartment/House sublease GET ALL API**
-----
-  This API is used to get all the apartments present in the DB.
-
-* **URL**
-
-  `http:// IP Address:3000/get`
-
-* **Method:**
-  
-     `GET`
-  
-*  **URL Params**
-
-   `None`
-
-* **Data Params**
-
-    `None`
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `[{ id : the identifier of the newly listed apartment }] -> [id1, id2, id3]`
+ ## Description
+ The project aims to develop an online marketplace enabling people to lease or rent apartments and improve the search speed and quality by using ElasticSearch. This is being developed for the Software Engineering course (CEN5035) at the University of Florida, Fall 2017.
  
-* **Error Response:**
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
-
-  OR
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{ error : "Invalid Request" }`
-
-
-  OR
-
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "No entry found in DB" }`
-
-* **Sample Call:**
-
-    `curl http://127.0.0.1:3000/get`
-
-
-
-**3) Apartment/House sublease DELETE ALL API**
-----
-  This API is used to delete all the apartments present in the DB.
-
-* **URL**
-
-  `http:// IP Address:3000/get`
-
-* **Method:**
-  
-     `DELETE`
-  
-*  **URL Params**
-
-   `None`
-
-* **Data Params**
-
-    `None`
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `[{ true }]`
+ ## Technology Involved
+  - Angular 4
+  - Material Design
+  - TypeScript
+  - NodeJs
+  - Express
+  - ElasticSearch
+  - Protractor
  
-* **Error Response:**
+## Installation
+  ### Node v4.2.0
+  Install node v4.2.0 from https://nodejs.org/en/download/
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
+  ### Elasticsearch v5.3.6
+  - Install Elasticsearch v5.3.6 from http://www.elastic.co/downloads/past-releases/elasticsearch-5-6-3
+  - Unzip the downloaded zip file into desired location
+  - Add the bin floder to the path environment variable
 
-  OR
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{ error : "Invalid Request" }`
-
-
-  OR
-
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "No entry found in DB" }`
-
-* **Sample Call:**
-
-    `curl -X "DELETE" http://127.0.0.1:3000/delete`
+  ### Install Dependencies
+  - `npm install` - To install all required node modules
+  - `npm install karma -g` - To install Karma globally
 
 
-**4) Apartment/House sublease GET ALL API with id**
-----
-  This API is used to get a specific apartment, if it is present in the DB.
-
-* **URL**
-
-  `http:// IP Address:3000/get_id?id=some id`
-
-* **Method:**
-  
-     `GET`
-  
-*  **URL Params**
-
-   `id`
-
-* **Data Params**
-
-    `None`
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `[{ information about the element with specific id }] `
+ ## How To Run
+ 1. `npm install` - To install all required node modules
+ 2. `elasticsearch` - To be run as a service.
+ 3. `node www` - To be run in a separate terminal to start the node server 
+ 4. `ng build` - To be run in a separate terminal to build the angular app
+ 5. In a browser, go to "localhost:4200" to access the website
  
-* **Error Response:**
+## Running Front-End Tests
+  ### Running unit tests
+  Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
+  ## Running end-to-end tests
+  Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+  Before running the tests make sure you are serving the app via `ng serve`.
 
-  OR
+## Running Back-End Tests
+  - Make sure you have installed mocha globally using command `npm install mocha -g`
+  - Go into backend test folder and open the command prompt
+  - Run backend tests using command `"npm test"`
 
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{ error : "Invalid Request with non-existing id" }`
+## Documentation
 
+  ### Back-End Documentation
+  - Backend API Documentation https://github.com/DilipKunderu/SEfa17/wiki/Back-end-API
+  - Backend Auto-Generated Documentation 
 
-  OR
-
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "No entry found in DB" }`
-
-* **Sample Call:**
-
-    `curl http://127.0.0.1:3000/get_id?id=12345cf234`
-
-
-**5) Apartment/House sublease DELETE ALL API**
-----
-  This API is used to delete all the apartments present in the DB.
-
-* **URL**
-
-  `http:// IP Address:3000/delete_id?id=someid"`
-
-* **Method:**
-  
-     `DELETE`
-  
-*  **URL Params**
-
-   `id`
-
-* **Data Params**
-
-    `None`
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `[{ id : the identifier of the newly listed apartment }] -> [id1, id2, id3]`
- 
-* **Error Response:**
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
-
-  OR
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{ error : "Invalid Request" }`
-
-
-  OR
-
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "No entry found in DB" }`
-
-* **Sample Call:**
-
-    `curl -X "DELETE" http://127.0.0.1:3000/delete_id?id=12334cf2`
+  ## Front-End Docmentation
+  - Frontend Documentation wiki https://github.com/DilipKunderu/SEfa17/wiki/Front-end-Documentation.
+  - Frontend Auto-Generated Documentation
+ ## Team Members
+  - Dilip Kunderu
+  - Meghana Madineni
+  - Pallavi Raman
+  - Saptarshi Chakraborty
