@@ -1,5 +1,5 @@
     <div class="cardiv">
-      <div fxFlex="50" *ngFor="let data of (data.listingArray ? data.listingArray.slice(0,10): []); let i = index" [routerLink]="['/listing-detail', {'id':data._id}]"  routerLinkActive="active">
+      <div fxFlex="50" *ngFor="let data of data.listingArray; let i = index" [routerLink]="['/listing-detail', {'id':data._id}]"  routerLinkActive="active">
         <button md-button>
           <div fxLayout="column">
             <div fxFlex="80">

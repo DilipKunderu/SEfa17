@@ -12,6 +12,8 @@ export class HouseListingService {
   //declarations
   public isLoggedIn: boolean = false;
   public userDetail: string;
+  public userName: string;
+  public userEmail: string;
 
   public listingArray: Array<any> = [];
   public markers: Array<Marker> = [];
@@ -55,12 +57,6 @@ export class HouseListingService {
 
   setLogin() {
     this.isLoggedIn = !(this.isLoggedIn);
-    if (this.isLoggedIn) {
-      console.log('logged in');
-    }
-    else {
-      console.log('logged out');
-    }
   }
 }
 

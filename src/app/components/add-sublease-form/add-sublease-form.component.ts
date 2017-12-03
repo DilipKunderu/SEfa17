@@ -179,6 +179,13 @@ export class AddSubleaseFormComponent implements OnInit {
     private data: HouseListingService) { }
 
   ngOnInit() {
+    // google maps zoom level
+   this.zoom= 50;
+   
+   // initial center position for the map
+   this.lat = 29.620814;
+   this.lng =  -82.376022;
+
     // select the first one
     if (this.homeTypes) {
       this.onSelectionChange(this.homeTypes[0]);
@@ -221,11 +228,11 @@ export class AddSubleaseFormComponent implements OnInit {
     }
 
     formData.append('title', this.model.title);
-    formData.append('owner', 'Saptarshi');
+    formData.append('owner', this.data.userName);
     formData.append('rent', this.model.rent);
     formData.append('lat', this.model.lat);
     formData.append('lon', this.model.lon);
-    formData.append('email', 'saptarshi@email');
+    formData.append('email', this.data.userEmail);
     formData.append('zipcode', this.model.zipcode);
     formData.append('description', this.model.description);
     formData.append('startdate', this.model.start_date.getFullYear() + '-' + this.model.start_date.getMonth());

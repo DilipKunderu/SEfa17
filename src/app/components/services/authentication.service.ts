@@ -26,7 +26,13 @@ export class AuthenticationService {
             .map((response: Response) => {
                 const a = JSON.stringify(response);
                 const b = JSON.parse(a);
+                const c = b._body;
+                const d: Array<string> = c.split(":");
+
                 this.data.userDetail = b._body;
+                this.data.userName = d[1];
+                this.data.userEmail = d[0];
+
                 let user = response.toString();
                 // console.log(user);
                 localStorage.setItem('currentUser', JSON.stringify(user));

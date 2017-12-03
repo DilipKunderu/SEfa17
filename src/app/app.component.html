@@ -5,10 +5,11 @@
           <button md-button routerLink="/" routerLinkActive="active"> <md-icon id="gator_logo" class="icon" svgIcon="logo"></md-icon></button>
         </div>
         <span fxFlex></span>
-        <div fxFlex=30>
-            <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button> 
-            <span fxFlex></span>
             <div *ngIf="data.isLoggedIn; else lala">
+              <div>
+                  <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button>
+              </div>    
+                <span fxFlex></span>
               <button md-button routerLink="/user-list" routerLinkActive="active">{{data.userDetail}}</button>
               <button md-button id="logout" (click)="logout()" routerLinkActive="active">Logout</button>
             </div>
@@ -19,7 +20,6 @@
             </ng-template>
           <button id="help" md-button routerLink="/help" routerLinkActive="active">Help</button>
           <span fxFlex></span>   
-        </div>
     </md-toolbar>
     <router-outlet></router-outlet>
   </md-sidenav-container>
