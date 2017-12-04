@@ -43,15 +43,6 @@ router.get("/", function (req, res) {
     });
 });
 
-// POST API to add new entries to database
-router.post("/add", function (req, res) {
-    dbHelper.dbinsert(req, res, function (err, result) {
-        if (err)
-            return res.status(400).send("Not added");
-        return res.status(200).send(result);
-    });
-});
-
 router.post('/lease', upload.any(), function (req, res, next) {
     console.log(req.body.rent);
     var imageFiles = [];
