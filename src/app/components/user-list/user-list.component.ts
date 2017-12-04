@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, IterableDiffers, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HouseListingService } from '../../house-listing.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -9,38 +9,27 @@ import { Router } from '@angular/router';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit, DoCheck {
+
+export class UserListComponent implements OnInit {
   res: object;
-  @Input() array: Array<any> = [];
+  array: Array<any> = [];
   differ: any;
 
   constructor(
     private data: HouseListingService,
     private http: HttpClient,
-    private router: Router,
-    private differs: IterableDiffers) { 
-      this.differ = differs.find([]).create(null);
+    private router: Router,) { 
     }
 
   deleted (s: string) {
     this.http.delete('http://192.168.2.24:3000/delete_id?id='+ s)
     .subscribe(res => {
       // console.log(res);
-      // this.router.navigate(['/']);
-    })
+      this.router.navigate(['/']);
+    });
   }
 
   ngOnInit() {
-    this.getLatest();
-  }
-
-  ngDoCheck() {
-    const change = this.differ.diff(this.array);
-    this.array.length = 0;
-    this.getLatest();
-  }
-
-  getLatest() {
     this.http.get('http://192.168.2.24:3000/mylease?name=' + this.data.userName)
     .subscribe(res => {
       this.res = res;
