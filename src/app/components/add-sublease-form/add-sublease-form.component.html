@@ -62,26 +62,34 @@
                     </tr>
                 </tbody>
             </table>
-            <md-select 
-            placeholder="bedrooms"
-            id="bedrooms" 
-            [(ngModel)]="model.bedrooms" 
-            name="bedrooms">
-                <md-option *ngFor='let count2 of numArray2' [value]="count2.viewValue">
-                    {{count2.viewValue}}
-                </md-option>
-            </md-select>
-            <md-select placeholder="bathrooms" 
-            [(ngModel)]="model.bathrooms" 
-            name="bathrooms"
-            id="bathrooms">
-                <md-option *ngFor='let count3 of numArray3' [value]="count3.viewValue">
-                    {{count3.viewValue}}
-                </md-option>
-            </md-select>
-            <div style="float:right">
+            <div class="cardiv">
+                    <span fxFlex></span>
+                <md-select 
+                placeholder="bedrooms"
+                id="bedrooms" 
+                [(ngModel)]="model.bedrooms" 
+                name="bedrooms">
+                    <md-option *ngFor='let count2 of numArray2' [value]="count2.viewValue">
+                        {{count2.viewValue}}
+                    </md-option>
+                </md-select>
+                <span fxFlex></span>
+                <md-select placeholder="bathrooms" 
+                [(ngModel)]="model.bathrooms" 
+                name="bathrooms"
+                id="bathrooms">
+                    <md-option *ngFor='let count3 of numArray3' [value]="count3.viewValue">
+                        {{count3.viewValue}}
+                    </md-option>
+                </md-select>
+                <span fxFlex></span>
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
+<!--            
+            
+            <div style="float:right">
+                
+            </div> -->
         </form>
     </md-step>
     <md-step >
