@@ -35,10 +35,7 @@ export class AppComponent implements OnInit {
   }
 
 logout(){
-  alert('logout')
-  alert(this.cookie.get('loginCookie'))
   this.cookie.remove('loginCookie')
-  alert(this.cookie.get('loginCookie'))
   window.location.reload();
 }
 }
