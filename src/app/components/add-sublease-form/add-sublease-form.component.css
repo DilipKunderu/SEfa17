@@ -27,6 +27,12 @@
     align-items: center;
   }
 
+  .cardiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
   agm-map {
     height: 580px;
     width: 450px;

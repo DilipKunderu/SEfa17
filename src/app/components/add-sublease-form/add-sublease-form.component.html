@@ -4,14 +4,14 @@
             <ng-template mdStepLabel>Fill out initial details</ng-template>
             <!-- {{diagnostic}} -->
             <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" style="height:100%">
-                <md-card fxFlex="65">
+                <md-card fxFlex="40">
                         <md-card>
                             <div></div>
                             <div></div>
                                 <md-form-field>
                                         <input mdInput 
                                         id="title" 
-                                        placeHolder="title" 
+                                        placeholder="title" 
                                         required 
                                         [(ngModel)]="model.title" 
                                         name="title">
@@ -21,14 +21,14 @@
                                     <md-form-field>
                                             <input mdInput 
                                             id="zipcode" 
-                                            placeHolder="Zip Code" 
+                                            placeholder="Zip Code" 
                                             required 
                                             [(ngModel)]="model.zipcode" 
                                             name="zipcode">
                                         </md-form-field>
                             </md-card>
                 </md-card>
-                <md-card fxFlex="35">
+                <md-card fxFlex="60">
                         <md-form-field>
                                 <textarea mdInput 
                                 id="description" 
@@ -108,7 +108,7 @@
     </md-step>
     <md-step>
         <form  #subleaseForm04="ngForm">
-            <ng-template mdStepLabel>Fill out your name</ng-template>
+            <ng-template mdStepLabel>Rent and Images</ng-template>
             <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
                 <md-card fxFlex="65">
                     <md-grid-list cols="1" rowHeight="200px">
