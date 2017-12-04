@@ -192,7 +192,7 @@ function deletedb(req, res, callback) {
 var dbdelete_id =  function(input_id, res, callback) {
     elasticclient.delete({  
         index: 'housing',
-		type:'lease',
+		type:'leasemetadata',
 		id: input_id
       }, function(err,resp,status) {
             callback(err, resp);
@@ -202,7 +202,8 @@ var dbdelete_id =  function(input_id, res, callback) {
 var dbLeaseMetadataGet = function(req, res, callback) {
     elasticclient.search({
         index:'housing',
-        type : 'leasemetadata'
+        type : 'leasemetadata',
+        size: 1000,
     },	function(err,resp, status) {
 		callback(err,resp);
 	});  
@@ -211,7 +212,8 @@ var dbLeaseMetadataGet = function(req, res, callback) {
 var dbLeaseGet = function(req, res, callback) {
     elasticclient.search({
         index:'housing',
-        type : 'leasemetadata'
+        type : 'leasemetadata',
+        size: 1000,
     },	function(err,resp, status) {
 		callback(err,resp);
 	});  
@@ -337,17 +339,17 @@ var dbGetBetweenPrice = function(min, max, res, callback) {
  * @param {any} res 
  * @param {any} callback 
  */
-var dbgetMulFilter = function(req, res, callback) {
+var dbgetMulFilter = function(name, res, callback) {
     var jsonData = 
     {
         "query": {
             "query_string": {
-                "query": "(details.beds:2) AND (owner:saptarshi)"
+                "query": "(owner:Saptarshi)"
             }
         }
     }
-
-    rest.postJson('http://localhost:9200/housing/lease/_search?pretty', jsonData).
+    jsonData.query.query_string.query = "(owner:"+name+")";
+    rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
     on('complete', function(data, response) {
         callback(data, response);
     });
