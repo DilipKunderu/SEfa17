@@ -27,12 +27,6 @@ export class AppComponent implements OnInit {
    ) {
       iconRegistry.addSvgIcon( 'logo',
       sanitizer.bypassSecurityTrustResourceUrl('./assets/logo.svg'));
-
-  }
-  loginhide(){
-    document.getElementById("login").style.visibility = "hidden";
-    document.getElementById("signup").style.visibility = "hidden";
-    document.getElementById("logout").style.visibility = "visible";
   }
   
   ngOnInit() {
@@ -41,8 +35,9 @@ export class AppComponent implements OnInit {
 
 logout(){
  this.signout.logout();
- document.getElementById("logout").style.visibility = "hidden";
- document.getElementById("login").style.visibility = "visible";
- document.getElementById("signup").style.visibility = "visible";
+ window.location.reload();
+//  document.getElementById("logout").style.visibility = "hidden";
+//  document.getElementById("login").style.visibility = "visible";
+//  document.getElementById("signup").style.visibility = "visible";
 }
 }

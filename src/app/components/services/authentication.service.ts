@@ -15,11 +15,13 @@ import {
     Login
 }
 from '../models/index';
+import { Router } from '@angular/router';
 import { HouseListingService } from '../../house-listing.service';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http, private data: HouseListingService) {}
+    constructor(private http: Http, private data: HouseListingService,
+    private router: Router) {}
 
     login(login: Login) {
         return this.http.post('http://192.168.2.24:3000/login', login)
@@ -45,5 +47,6 @@ export class AuthenticationService {
 
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        // this.router.navigate(['/']);
     }
 }
