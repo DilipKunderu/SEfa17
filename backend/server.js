@@ -15,8 +15,6 @@ var session      = require('express-session');
 var configDB = require('./config/mongodatabase.js');
 var bodyParser = require('body-parser');
 
-//mongoose.connect(configDB.url); // connect to our database
-
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
@@ -28,16 +26,6 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// required for passport
-// app.use(session({
-//     secret: 'ilovescotchscotchyscotchscotch', // session secret
-//     resave: true,
-//     saveUninitialized: true
-// }));
-//app.use(passport.initialize());
-//app.use(passport.session()); // persistent login sessions
-//app.use(flash()); // use connect-flash for flash messages stored in session
 
 // use the following route to handle all the API request 
 app.use('/', routes);
