@@ -53,9 +53,9 @@ router.post('/lease', upload.any(), function (req, res, next) {
 
     dbHelper.dbLeaseInsert(req, res, imageFiles, function (err, result) {
         if (err)
-            return res.status(400).send("Not Added" + err);
+            return res.status(400).send(err);
         else
-            return res.status(200).send("Added" + result);
+            return res.status(200).send(result);
     })
 });
 
@@ -101,18 +101,6 @@ router.post('/leasemetadata', upload.any(), function (req, res, next) {
         else
             return res.status(200).send("Added" + result);
     })
-});
-
-
-// GET API to get entries from database
-
-router.get("/get", function (req, res) {
-    //console.log("Accepting GET request");
-    dbHelper.dbget(req, res, function (err, result) {
-        if (err)
-            return res.status(400).send("Cannot obtain data");
-        return res.status(200).send(result);
-    });
 });
 
 // GET API to get entries with a specific id from database

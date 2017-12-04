@@ -189,16 +189,6 @@ var dbLeaseGet = function(req, res, callback) {
 	});  
 }
 
-// search for the db and return all documents for an index.
-var dbget = function(req, res, callback) {
-    elasticclient.search({
-        index:'housing',
-        type : 'lease'
-    },	function(err,resp, status) {
-		callback(err,resp);
-	});   
-}
-
 // search for the db and return all documents with a specific id.
 var dbget_id = function(input_id, res, callback) {
     elasticclient.get({
@@ -344,7 +334,6 @@ var dbLogin = function(req, res, callback) {
 // functions exposed for other modules
 exports.dbstart = dbstart;
 //exports.dbdelete = dbdelete;
-exports.dbget = dbget;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;
 exports.dbgetgeo = dbgetgeo;
