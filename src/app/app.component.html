@@ -8,10 +8,9 @@
       </div>
       <span fxFlex></span>
       <div *ngIf="data.isLoggedIn; else lala">
-        
-        <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button>
+        <button md-button routerLink="/user-list" routerLinkActive="active">{{data.userName}}</button>
         <span fxFlex></span>
-        <button md-button routerLink="/user-list" routerLinkActive="active">{{data.userDetail}}</button>
+        <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button>
         <span fxFlex></span>
         <button md-button id="logout" (click)="logout()">Logout</button>
       </div>
