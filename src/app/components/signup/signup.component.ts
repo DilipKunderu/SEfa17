@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
 
   signUpSubmit(form: any) {
     if(form.password != form.cpassword){
-      alert("Password doernot match with confirm password")
+      alert("Password doesnot match with confirm password")
       var resetForm =<HTMLFormElement>document.getElementById("signupForm");
       resetForm.reset();
       return;

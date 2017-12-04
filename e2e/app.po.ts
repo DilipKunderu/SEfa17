@@ -10,4 +10,8 @@ export class AppPage {
     const helpTab = element(by.id('help'));
     return helpTab.click();
   }
+
+  clickDiscoverHosting(){
+    return(element(by.id('Discover')));
+  }
 }

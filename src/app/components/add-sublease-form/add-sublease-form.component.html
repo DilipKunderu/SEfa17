@@ -83,7 +83,7 @@
                     </md-option>
                 </md-select>
                 <span fxFlex></span>
-                <button md-raised-button color="warn" mdStepperNext>Next</button>
+                <button id="stepper2" md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
 <!--            
             
@@ -110,7 +110,7 @@
                 </tbody>
             </table>
             <div style="float:right">
-                <button md-raised-button color="warn" mdStepperNext>Next</button>
+                <button id="stepper3" md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
     </md-step>
@@ -186,7 +186,7 @@
             </div>
             <br>
             <div style="float:right">
-                <button md-raised-button color="accent" (click)="upload()"  routerLink="/" routerLinkActive="active">Submit</button>
+                <button id="postSubmit" md-raised-button color="accent" (click)="upload()"  routerLink="/" routerLinkActive="active">Submit</button>
             </div>
         </form>
     </md-step>

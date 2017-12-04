@@ -5,21 +5,17 @@ align-items: center;">
             <form id = "loginform" action="/home" #form="ngForm" (ngSubmit)="loginSubmit(form.value)" ngNativeValidate>
                 <div fxLayout="column">
                     <div fxLayout="row" fxLayoutAlign="center center">
-                        <!-- <md-icon>perm_identity</md-icon> -->
                         <md-input-container style="width: 80%; margin:auto auto;" hideRequiredMarker>
-
-                            <input mdInput ngModel ng-model="user.email" placeholder="E-mail" name="email" required>
-
+                            <input id="loginEmail" mdInput ngModel ng-model="user.email" placeholder="E-mail" name="email" required>
                         </md-input-container>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
-                        <!-- <md-icon>vpn_key</md-icon> -->
                         <md-input-container style="width: 80%; margin:auto auto" hideRequiredMarker>
-                            <input mdInput ngModel ng-model="user.password" placeholder="Password" name="password" required>
+                            <input id="loginPassword" mdInput ngModel ng-model="user.password" placeholder="Password" name="password" required>
                         </md-input-container>
                     </div>
                     <md-dialog-actions align="end">
-                        <button md-raised-button type="submit" color="accent"><b>Login</b></button>
+                        <button id="loginClick" md-raised-button type="submit" color="accent"><b>Login</b></button>
                     </md-dialog-actions>
                 </div>
             </form>
