@@ -114,58 +114,20 @@ export class HomeComponent implements OnInit {
   onRangeApply() {
     this.data.markers.length = 0;
     this.data.listingArray.length = 0;
-    this.http.get('http://70.171.46.158:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
+    this.http.get('http://192.168.2.24:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
       .subscribe(res => {
         this.res = res;
         [].push.apply(this.data.listingArray, res);
 
         this.data.load(res, 'R');
-       
-      //   const a = JSON.stringify(res);
-      //   const b = JSON.parse(a);
-  
-      //   for (const entry of b) {
-      //     const temp = JSON.stringify(entry);
-      //     const t = JSON.parse(temp);
-  
-      //     const lat: number =  parseFloat(t._source.geolocation.lat);
-      //     const lng: number =  parseFloat(t._source.geolocation.lon);
-      //     const label: string = 'T2';
-      //     const draggable: boolean = false;
-      //     this.data.markers.push({
-      //     lat: lat,
-      //     lng: lng,
-      //     label: label,
-      //     draggable: false
-      //   });
-      // }
       });
   }
 
   onMappClick() {
     this.data.markers.length = 0;
-    this.http.get('http://70.171.46.158:3000/leasemetadata')
+    this.http.get('http://192.168.2.24:3000/leasemetadata')
     .subscribe(res => {
       this.data.load(res, 'M');
-      
-     //   const a = JSON.stringify(res);
-     //   const b = JSON.parse(a);
- 
-     //   for (const entry of b) {
-     //     const temp = JSON.stringify(entry);
-     //     const t = JSON.parse(temp);
- 
-     //     const lat: number =  parseFloat(t._source.geolocation.lat);
-     //     const lng: number =  parseFloat(t._source.geolocation.lon);
-     //     const label: string = 'T2';
-     //     const draggable: boolean = false;
-     //     this.data.markers.push({
-     //     lat: lat,
-     //     lng: lng,
-     //     label: label,
-     //     draggable: false
-     //   });
-     // }
     });
   }
 
@@ -176,7 +138,7 @@ export class HomeComponent implements OnInit {
     this.data.markers.length = 0;
     
     this.data.listingArray.length = 0;
-    this.http.get('http://70.171.46.158:3000/date?min='
+    this.http.get('http://192.168.2.24:3000/date?min='
       + this.startDate.getFullYear() + '-' + (this.startDate.getMonth() + 1)
       + '&max=' + this.endDate.getFullYear() + '-' + (this.endDate.getMonth() + 1))
       .subscribe(res => {
@@ -185,26 +147,6 @@ export class HomeComponent implements OnInit {
         [].push.apply(this.data.listingArray, res);
 
         this.data.load(res, 'D');
-        
-       //   const a = JSON.stringify(res);
-       //   const b = JSON.parse(a);
-   
-       //   for (const entry of b) {
-       //     const temp = JSON.stringify(entry);
-       //     const t = JSON.parse(temp);
-   
-       //     const lat: number =  parseFloat(t._source.geolocation.lat);
-       //     const lng: number =  parseFloat(t._source.geolocation.lon);
-       //     const label: string = 'T2';
-       //     const draggable: boolean = false;
- 
-       //     this.data.markers.push({
-       //     lat: lat,
-       //     lng: lng,
-       //     label: label,
-       //     draggable: false
-       //   });
-       // }
       });
   }
 

@@ -9,6 +9,10 @@ md-sidenav {
   width: 90px;
 }
 
+md-toolbar {
+  width: 1348px;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;

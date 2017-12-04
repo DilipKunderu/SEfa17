@@ -35,6 +35,7 @@ import { ListingDetailComponent } from './components/listing-detail/listing-deta
 
 import { HomeComponent } from './components/home/home.component';
 import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 // export function init (data: HouseListingService) {
 //   return () => {
@@ -53,7 +54,8 @@ import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sub
     ListingDetailComponent,
     HomeComponent,
     AddSubleaseFormComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    UserListComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" style="height:100%">
+  <div fxFlex="25"></div>  
+  <div fxFlex="50">
+            <div class="cardiv" *ngFor="let data of (array ? array.slice(0,10): []); let i = index">
+              <div fxFlex="80">
+                  <button md-button  [routerLink]="['/listing-detail', {'id':data._id}]"  routerLinkActive="active">
+                      <div fxLayout="column">
+                        <div fxFlex="80">
+                            <img src="http://192.168.2.24:3000/uploads/{{ data._source.images[0]}}">
+                        </div>
+                          <div fxFlex="10">{{data._source.title}}</div>
+                          <div fxFlex="10">${{data._source.rent}}/month</div>
+                      </div>
+                    </button>
+                    <button md-raised-button color="warn" (click)="deleted(data._id)">DELETE</button>
+              </div>
+            </div>               
+    </div>
+    <div fxFlex="25"></div>
+</div>

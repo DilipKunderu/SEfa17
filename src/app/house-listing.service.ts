@@ -11,10 +11,13 @@ import {
 export class HouseListingService {
   //declarations
   public isLoggedIn: boolean = false;
+  public userDetail: string;
+  public userName: string;
+  public userEmail: string;
 
   public listingArray: Array<any> = [];
   public markers: Array<Marker> = [];
-  public URL = 'http://10.136.39.201:3000/';
+  public URL = 'http://192.168.2.24:3000/';
   res: Object;
 
   model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
@@ -26,7 +29,7 @@ export class HouseListingService {
     injector: Injector) {
       setTimeout(()=>this.http = injector.get(HttpClient));
 
-    this.http.get('http://70.171.46.158:3000/lease/')
+    this.http.get('http://192.168.2.24:3000/lease/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.listingArray, res);
@@ -54,12 +57,6 @@ export class HouseListingService {
 
   setLogin() {
     this.isLoggedIn = !(this.isLoggedIn);
-    if (this.isLoggedIn) {
-      console.log('logged in');
-    }
-    else {
-      console.log('logged out');
-    }
   }
 }
 

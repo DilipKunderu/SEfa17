@@ -25,7 +25,7 @@ export class UserService {
     // }
 
     create(user: User) {
-        return this.http.post('http://192.168.0.18:3000/signup', user)
+        return this.http.post('http://192.168.2.24:3000/signup', user)
         .map(res => res.toString());
     }
 
