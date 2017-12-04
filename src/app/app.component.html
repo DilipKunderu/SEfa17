@@ -1,25 +1,27 @@
 <div fxLayout="column" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" fxFlex>
   <md-sidenav-container fxFlex>
     <md-toolbar color="primary">
-        <div fxflex="30">
-          <button md-button routerLink="/" routerLinkActive="active"> <md-icon id="gator_logo" class="icon" svgIcon="logo"></md-icon></button>
-        </div>
+      <div fxflex="30">
+        <button md-button routerLink="/" routerLinkActive="active">
+          <md-icon id="gator_logo" class="icon" svgIcon="logo"></md-icon>
+        </button>
+      </div>
+      <span fxFlex></span>
+      <div *ngIf="data.isLoggedIn; else lala">
+        
+        <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button>
         <span fxFlex></span>
-            <div *ngIf="data.isLoggedIn; else lala">
-              <div>
-                  <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button>
-              </div>    
-                <span fxFlex></span>
-              <button md-button routerLink="/user-list" routerLinkActive="active">{{data.userDetail}}</button>
-              <button md-button id="logout" (click)="logout()">Logout</button>
-            </div>
-            <ng-template #lala>
-              <button id="signup" md-button routerLink="/signup" routerLinkActive="active">Sign Up</button>
-              <span fxFlex></span>
-              <button id="login" md-button routerLink="/login" routerLinkActive="active">Login</button>      
-            </ng-template>
-          <button id="help" md-button routerLink="/help" routerLinkActive="active">Help</button>
-          <span fxFlex></span>   
+        <button md-button routerLink="/user-list" routerLinkActive="active">{{data.userDetail}}</button>
+        <span fxFlex></span>
+        <button md-button id="logout" (click)="logout()">Logout</button>
+      </div>
+      <ng-template #lala>
+          <span fxFlex></span>
+        <button id="signup" md-button routerLink="/signup" routerLinkActive="active">Sign Up</button>
+        
+        <button id="login" md-button routerLink="/login" routerLinkActive="active">Login</button>
+      </ng-template>
+      <button id="help" md-button routerLink="/help" routerLinkActive="active">Help</button>
     </md-toolbar>
     <router-outlet></router-outlet>
   </md-sidenav-container>

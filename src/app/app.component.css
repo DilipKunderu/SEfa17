@@ -10,7 +10,8 @@ md-sidenav {
 }
 
 md-toolbar {
-  width: 1348px;
+  width: 100vw;
+  max-width: 1348px;
 }
 
 .navbar {
