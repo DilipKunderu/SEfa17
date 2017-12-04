@@ -24,8 +24,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
 
 import 'hammerjs';
 import { routes } from './app.router';
-
-
+import {CookieService} from 'angular2-cookie/core';
+import {AuthenticationService} from '../app/components/services/index'
 // import { SelectorComponent } from './components/selector/selector.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoginComponent } from './components/login/login.component';
@@ -81,6 +81,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
       useValue: 'en-US'
     },
     HouseListingService,
+    CookieService,
+    AuthenticationService,
   //   {
   //     provide: APP_INITIALIZER,
   //     useFactory:init,

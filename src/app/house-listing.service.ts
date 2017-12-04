@@ -6,7 +6,7 @@ import {
   Router, Resolve,
   ActivatedRouteSnapshot
 } from '@angular/router';
-
+import {CookieService} from 'angular2-cookie/core';
 @Injectable()
 export class HouseListingService {
   //declarations
@@ -26,7 +26,8 @@ export class HouseListingService {
   constructor(
     private http: HttpClient, 
     private router: Router,
-    injector: Injector) {
+    injector: Injector,
+  private cookie:CookieService) {
       setTimeout(()=>this.http = injector.get(HttpClient));
 
     this.http.get('http://192.168.2.24:3000/lease/')
@@ -34,6 +35,13 @@ export class HouseListingService {
       this.res = res;
       [].push.apply(this.listingArray, res);
     });
+    if(this.cookie.get('loginCookie') != undefined){
+      this.userName = this.cookie.get('loginCookie');
+    this.isLoggedIn = true;
+  }
+  else{
+    this.isLoggedIn = false;
+  }
   }
 
   load(res: object, s: string) {
@@ -56,8 +64,13 @@ export class HouseListingService {
   }
 
   setLogin() {
-    this.isLoggedIn = !(this.isLoggedIn);
+if(this.cookie.get('loginCookie') != undefined){
+    this.isLoggedIn = true;
   }
+  else{
+    this.isLoggedIn = false;
+  }
+}
 }
 
 interface Marker {
