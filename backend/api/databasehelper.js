@@ -133,36 +133,6 @@ var dbLeaseInsert = function(req, res, imageFileNames, callback) {
     });
 }
 
-// helper function to insert entry in DB
-var dbinsert = function(req, res, callback) {
-    var uuid = new ObjectId();
-    elasticclient.index({  
-        index: 'housing',
-        id: uuid.toString(),
-        type: 'lease',
-        body: {
-            "owner": req.body.owner,
-            "location": req.body.location,
-            "zipcode": req.body.zipcode,
-            "description": req.body.description,
-            "roomtype": req.body.roomtype,
-            "bathrooms": req.body.bathrooms,
-            "bedrooms": req.body.bedrooms,
-            "internet": req.body.internet,
-            "airconditioning": req.body.airconditioning,
-            "washer_dryer": req.body.washer_dryer,
-            "free_parking_on_premises": req.bodyfree_parking_on_premises,
-            "private_bathroom": req.body.private_bathroom,
-            "wheelchair_accessible": req.body.wheelchair_accessible,
-            "pool": req.body.pool,
-            "gym": req.body.gym
-        }
-      },function(err,resp,status) {
-          console.log(err);
-          callback(err, resp);
-      } );
-}
-
 // check if DB is present; if present, delete the DB
 /*var dbdelete =  function(req, res, callback) {
     elasticclient.indices.get({
@@ -217,16 +187,6 @@ var dbLeaseGet = function(req, res, callback) {
     },	function(err,resp, status) {
 		callback(err,resp);
 	});  
-}
-
-// search for the db and return all documents for an index.
-var dbget = function(req, res, callback) {
-    elasticclient.search({
-        index:'housing',
-        type : 'lease'
-    },	function(err,resp, status) {
-		callback(err,resp);
-	});   
 }
 
 // search for the db and return all documents with a specific id.
@@ -373,9 +333,7 @@ var dbLogin = function(req, res, callback) {
 
 // functions exposed for other modules
 exports.dbstart = dbstart;
-exports.dbinsert = dbinsert;
 //exports.dbdelete = dbdelete;
-exports.dbget = dbget;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;
 exports.dbgetgeo = dbgetgeo;
