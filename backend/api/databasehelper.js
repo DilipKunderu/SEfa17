@@ -49,30 +49,6 @@ function createdb() {
         });
 }
 
-
-var dbMetadataInsert = function(req, res, imageFileNames, callback) {
-    var uuid = new ObjectId();
-    elasticclient.index({
-        index: 'housing',
-        id: uuid.toString(),
-        type: 'leasemetadata',
-        body: {
-            "searchid":req.body.searchid,
-            "title":req.body.title,
-            "rent":req.body.rent,
-            "geolocation" : {
-                "lat" : req.body.lat,
-                "lon" : req.body.lon
-            },
-            "startdate":req.body.startdate,
-            "enddate":req.body.enddate,
-            "images":imageFileNames
-        }
-    },function(err,resp,status) {
-        callback(err, resp);
-    });
-}
-
 var dbSignup = function(req, res, callback) {
     
 
@@ -337,7 +313,6 @@ exports.dbstart = dbstart;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;
 exports.dbgetgeo = dbgetgeo;
-exports.dbMetadataInsert = dbMetadataInsert;
 exports.dbLeaseMetadataGet = dbLeaseMetadataGet;
 exports.dbgetMulFilter = dbgetMulFilter;
 exports.dbGetBetweenDates = dbGetBetweenDates;

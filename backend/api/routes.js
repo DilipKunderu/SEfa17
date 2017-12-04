@@ -86,23 +86,6 @@ router.post("/login", function(req, res) {
     });
 })
 
-router.post('/leasemetadata', upload.any(), function (req, res, next) {
-    console.log(req.body.rent);
-    var imageFiles = [];
-    for (var i = 0; i < req.files.length; i++) {
-        var sampleFile = req.files[i].filename;
-        imageFiles.push(sampleFile);
-    }
-    //console.log(imageFiles);
-
-    dbHelper.dbMetadataInsert(req, res, imageFiles, function (err, result) {
-        if (err)
-            return res.status(400).send("Not Added" + err);
-        else
-            return res.status(200).send("Added" + result);
-    })
-});
-
 // GET API to get entries with a specific id from database
 router.get("/get_id", function (req, res) {
     //console.log("Accepting GET request with specific id"+ req.query.id);
