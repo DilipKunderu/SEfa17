@@ -81,13 +81,16 @@ router.post("/signup", function(req, res) {
 
 router.post("/login", function(req, res) {
     const secret = req.body.password;
+    const email = req.body.email;
+    console.log("login secret" + secret);
     const hash = crypto.createHmac('sha256', 'secret')
                        .update(secret)
                        .digest('hex');
     dbHelper.dbLogin(req, res, function(data, response) {
         var dbPwd = data.hits.hits[0]._source.password;
+        var dbUser = data.hits.hits[0]._source.username;
         if(dbPwd == hash)
-            return res.status(200).send("Success");
+            return res.status(200).send(email+":"+dbUser);
         return res.status(400).send("Failure");
     });
 })
@@ -161,11 +164,12 @@ router.get("/lease", function (req, res) {
 });
 
 // GET API to query based on multiple filters
-router.get("/mulfilters", function (req, res) {
-    dbHelper.dbgetMulFilter(req, res, function (data, response) {
+router.get("/mylease", function (req, res) {
+    dbHelper.dbgetMulFilter(req.query.name, res, function (data, response) {
         //console.log(data.hits);
         if (response.statusCode != 200)
             return res.status(400).send("Not Found");
+
         return res.status(200).send(data.hits.hits);
     });
 });
@@ -231,7 +235,7 @@ router.delete("/delete_id", function (req, res) {
     dbHelper.dbdelete_id(req.query.id, res, function (err, result) {
         if (err)
             return res.status(400).send("Not deleted");
-        return res.status(200).send("Deleted");
+        return res.status(200).send("{\"Deleted\":true}");
     });
 });
 
