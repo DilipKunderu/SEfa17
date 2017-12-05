@@ -91,65 +91,65 @@ export class ListingDetailComponent implements OnInit {
         zipcode1.className = "desc";
         zipcode1.appendChild(zipcode2);
 
-        var gym:boolean = b._source.gym;
+        var gym:string = b._source.gym;
         var gym1 = document.getElementById("gym");
         var gym2= document.createTextNode("Gym");
       
-        if(!gym){
+        if(gym == "0"){
             gym1.className = "strikethrough"
         }
         gym1.appendChild(gym2);
 
-        var wandd:boolean = b._source.washer_dryer;
+        var wandd:string = b._source.washer_dryer;
         var wandd1 = document.getElementById("wandd");
         var wandd2= document.createTextNode("Washer and Drier");
       
-        if(!wandd){
+        if(wandd == "0"){
           wandd1.className = "strikethrough"
         }
         wandd1.appendChild(wandd2);
 
-        var ac:boolean = b._source.airconditioning;
+        var ac:string = b._source.airconditioning;
         var ac1 = document.getElementById("ac");
         var ac2= document.createTextNode("Air Conditioner");
       
-        if(!ac){
+        if(ac == "0"){
             ac1.className = "strikethrough"
         }
         ac1.appendChild(ac2);
 
-        var internet:boolean = b._source.wireless_internet;
+        var internet:string = b._source.internet;
         var internet1 = document.getElementById("internet");
         var internet2= document.createTextNode("Internet");
-      
-        if(!internet){
+  
+        if(internet == "0"){
           internet1.className = "strikethrough"
         }
         internet1.appendChild(internet2);
 
-        var pool:boolean = b._source.pool;
+        var pool:string = b._source.pool;
         var pool1 = document.getElementById("pool");
         var pool2= document.createTextNode("Pool");
       
-        if(!pool){
+        if(pool == "0"){
             pool1.className = "strikethrough"
         }
         pool1.appendChild(pool2);
 
-        var pb:boolean = b._source.private_bathroom;
+        var pb:string = b._source.private_bathroom;
         var pb1 = document.getElementById("pb");
         var pb2= document.createTextNode("Private bathroom");
       
-        if(!pb){
+        if(pb == "0"){
           pb1.className = "strikethrough"
         }
         pb1.appendChild(pb2);
 
-        var waccess:boolean = b._source.wheelchair_accessible;
+        var waccess:string = b._source.wheelchair_accessible;
         var waccess1 = document.getElementById("waccess");
         var waccess2= document.createTextNode("Wheelchair accessible");
       
-        if(!waccess){
+        if(waccess == "0"){
           waccess1.className = "strikethrough"
         }
         waccess1.appendChild(waccess2);
