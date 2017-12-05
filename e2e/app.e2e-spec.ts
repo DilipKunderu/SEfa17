@@ -81,9 +81,11 @@ describe('course-project App', () => {
 //     input1.click();
 //     browser.sleep(5000);
 //   });
+
+
 it('Listing details', () => {
   homepage.navigateTo();
-  browser.sleep(2000);
+  //browser.sleep(2000);
   homepage.carouselElement().click();
   browser.sleep(1000);
   listpage.setStartDate().sendKeys('12/5/2017');
@@ -100,31 +102,31 @@ it('Listing details', () => {
     signup.addPassword().sendKeys('hello');
     signup.addCPassword().sendKeys('hello');
     signup.register().click();
-    browser.sleep(2000);
+    //browser.sleep(2000);
     var EC = ExpectedConditions;
     browser.wait(EC.alertIsPresent(), 5000, "Alert is not getting present :(")
     browser.switchTo().alert().accept();
-    browser.sleep(2000);
+    //browser.sleep(2000);
     login.addEmail().sendKeys('gatorhousing@gmail.com');
     login.addPassword().sendKeys('hello');
     login.login().click();
     browser.sleep(2000);
     });
-  it('Discover hosting', () => {
-    apppage.navigateTo();
-    apppage.clickDiscoverHosting().click();
-    browser.sleep(1000);
-    formpage.postTitle().sendKeys('DummyPost');
-    formpage.postZipcode().sendKeys('32608');
-    formpage.postDescription().sendKeys('This is a post from end2end testing.');
-    formpage.stepperNext1().click();
-    browser.sleep(1000);
-    formpage.stepperNext2().click();
-    formpage.stepperNext3().click();
-    formpage.setRent().sendKeys('500');
-    formpage.submit().click();
-    browser.sleep(1000);
-    });
+    
+    it('Discover hosting', () => {
+      browser.ignoreSynchronization = true;
+      apppage.clickDiscoverHosting().click();
+      formpage.postTitle().sendKeys('DummyPost');
+      formpage.postZipcode().sendKeys('32608');
+      formpage.postDescription().sendKeys('This is a post from end2end testing.');
+      formpage.stepperNext1().click();
+      browser.sleep(1000);
+      formpage.stepperNext2().click();
+      formpage.stepperNext3().click();
+      formpage.setRent().sendKeys('500');
+      formpage.submit().click();
+      browser.sleep(3000);
+      });
 
     it('User Listings', () => {
       apppage.navigateTo();

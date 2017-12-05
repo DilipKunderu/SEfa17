@@ -14,10 +14,10 @@ exports.config = {
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
+  allScriptsTimeout: 120000,
+  getPageTimeout: 120000,
   jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000,
-    print: function() {}
+      defaultTimeoutInterval: 120000
   },
   onPrepare() {
     require('ts-node').register({
