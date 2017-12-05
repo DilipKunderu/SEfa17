@@ -73,6 +73,12 @@ var dbSignup = function(req, res, callback) {
 }
 
 var dbLeaseInsert = function(req, res, imageFileNames, callback) {
+    var lat = req.body.lat;
+    var lon = req.body.lon;
+    if (lat == "") { 
+       lat = 29;
+       lon = -82;
+    }
     var uuid = new ObjectId();
     elasticclient.index({
         index: 'housing',
@@ -86,8 +92,8 @@ var dbLeaseInsert = function(req, res, imageFileNames, callback) {
             "description": req.body.description,
             "rent":req.body.rent,
             "geolocation" : {
-                "lat" : req.body.lat,
-                "lon" : req.body.lon
+                "lat" : lat,
+                "lon" : lon
             },
             "startdate":req.body.startdate,
             "enddate":req.body.enddate,
@@ -108,31 +114,6 @@ var dbLeaseInsert = function(req, res, imageFileNames, callback) {
         callback(err, resp);
     });
 }
-
-// check if DB is present; if present, delete the DB
-/*var dbdelete =  function(req, res, callback) {
-    elasticclient.indices.get({
-        index:'housing'
-    }, function(err,resp, status) {
-        if(status == 200) {
-            console.log("Database does not exist");
-        } else {
-            deletedb(req, res, callback);
-        }
-    });   
-}
-
-// helper function to delete an existing DB
-function deletedb(req, res, callback) {
-     elasticclient.indices.delete({  
-        index: 'housing'
-      },function(err,resp,status) {
-        if(err) {
-          console.log("Unable to delete DB");
-        }
-        callback(err, resp);
-      });
-}*/
 
 // delete the DB element corresponding to a specific id
 var dbdelete_id =  function(input_id, res, callback) {
@@ -176,35 +157,6 @@ var dbget_id = function(input_id, res, callback) {
 	});   
 }
 
-// geo location based searching
-var dbgetgeo = function(latval, lonval, res, callback) {
-    var jsonData = 
-    {
-        "query": {
-            "bool" : {
-                "must" : {
-                    "match_all" : {}
-                },
-                "filter" : {
-                    "geo_distance" : {
-                        "distance" : "100km",
-                        "geolocation" : {
-                            "lat" : 40,
-                            "lon" : 79
-                        }
-                    }
-                }
-            }
-        }
-    }
-    jsonData.query.bool.filter.geo_distance.geolocation.lat=latval;
-    jsonData.query.bool.filter.geo_distance.geolocation.lon=lonval;
-    //console.log(jsonData.query.bool.filter.geo_distance.distance);
-      rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
-      on('complete', function(data, response) {
-        callback(data, response);
-      });
-}
 
 var dbGetBetweenDates = function(min, max, res, callback) {
     var jsonData = 
@@ -312,7 +264,6 @@ exports.dbstart = dbstart;
 //exports.dbdelete = dbdelete;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;
-exports.dbgetgeo = dbgetgeo;
 exports.dbLeaseMetadataGet = dbLeaseMetadataGet;
 exports.dbgetMulFilter = dbgetMulFilter;
 exports.dbGetBetweenDates = dbGetBetweenDates;
