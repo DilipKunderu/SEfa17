@@ -96,17 +96,6 @@ router.get("/get_id", function (req, res) {
     });
 });
 
-// GET API to search points within a fixed radius of a point
-router.get("/geosearch", function (req, res) {
-    dbHelper.dbgetgeo(req.query.lat, req.query.lon, res, function (data, response) {
-        //console.log(response);
-        if (response.statusCode != 200)
-            return res.status(400).send("Not Found");
-        else
-            return res.status(200).send(data.hits.hits);
-    })
-});
-
 // GET API to get lease metadata from database
 router.get("/leasemetadata", function (req, res) {
     dbHelper.dbLeaseMetadataGet(req, res, function (err, result) {
@@ -158,20 +147,18 @@ router.get("/price", function(req, res) {
 });
 
 router.post('/sendemail',function(req,res){
-    console.log(req.body)
 	var mailOptions={
 		to : req.body.to,
 		subject : req.body.subject,
 		text : req.body.text
 	}
-	console.log(mailOptions);
     
     smtpTransport.sendMail(mailOptions, function(error, response){
         if(error){
                 console.log(error);
             res.end("error");
         }else{
-                console.log("Message sent: " + response.message);
+                //console.log("Message sent: " + response.message);
             res.end("sent");
             }
     });

@@ -2,20 +2,14 @@ const express = require('express')
 const app = express();
 var elasticclient = require('./config/database.js');
 var routes = require('./api/routes.js');
-var passport = require('passport');
 var cors = require('cors')
 var dbHelper = require('./api/databasehelper.js');
-var mongoose = require('mongoose');
 var flash    = require('connect-flash');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
-
-var configDB = require('./config/mongodatabase.js');
 var bodyParser = require('body-parser');
-
-require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console

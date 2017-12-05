@@ -9,22 +9,78 @@ supertest = require('supertest');
 
 var request = supertest('localhost:3000');
 
-describe('lease metadata upload', function() {
-  it('file upload', function(done) {
-    request.post('/leasemetadata')
-            .attach('image', './test/1.png')
-            .field('rent','500')
-            .field('searchid','1234')
-            .field('lat','45')
-            .field('lon','90')
-            .field('startdate','2017-11')
-            .field('enddate','2018-05')
-            .then(function(res) {
-              console.log(res.body);
-              done();
-            });
+it('User sign up', function() {
+     return chai.request(app)
+       .post('/signup')
+        .send(
+          {
+            "email":"ssaptarshii@ufl.edu", 
+            "username":"sapt", 
+            "password":"hello"
+          }
+           
+      ).then(function(res) {
+        expect(res).to.have.status(200);
+      });
   });
-});
+
+  it('User sign in', function() {
+    return chai.request(app)
+      .post('/login')
+       .send(
+         {
+           "email":"ssaptarshii@ufl.edu",
+           "password":"hello"
+         }
+     ).then(function(res) {
+       expect(res).to.have.status(200);
+     });
+   });
+
+   it('Send email', function() {
+    return chai.request(app)
+      .post('/sendemail')
+       .send(
+         {
+           "email":"ssaptarshii@ufl.edu",
+           "subject":"test backend code",
+           "text" : "hello test"
+         }
+     ).then(function(res) {
+       expect(res).to.have.status(200);
+     });
+   });
+
+// describe('lease metadata upload', function() {
+//   it('file upload', function(done) {
+//     request.post('/lease')
+//             .attach('image', './test/1.png')
+//             .field('owner', 'Saptarshi')
+//             .field('email', 'ssaptarshii@ufl.edu')
+//             .field('title', 'sample test')
+//             .field('zipcode', '32608')
+//             .field('description', 'Apartment near downtown')
+//             .field('rent','500')
+//             .field('lat','45')
+//             .field('lon','90')
+//             .field('startdate','2017-11')
+//             .field('enddate','2018-05')
+//             .field("roomtype", "Shared room")
+//             .field("bathrooms", "3")
+//             .field("bedrooms", "4")
+//             .field("internet", "1")
+//             .field("airconditioning", "0")
+//             .field("washer_dryer", "1")
+//             .field("private_bathroom", "0")
+//             .field("wheelchair_accessible", "0")
+//             .field("pool", "0")
+//             .field("gym", "1")
+//             .then(function(res) {
+//               console.log(res.body._id);
+//               done();
+//             });
+//   });
+// });
 
 describe('API endpoints', function() {
 
@@ -33,7 +89,6 @@ describe('API endpoints', function() {
     return chai.request(app)
       .get('/')
       .then(function(res) {
-        //console.log(res.body.results)
         expect(res).to.have.status(200);
         expect(res.body.results).equal("Hello Gator Housing");
       });
@@ -51,64 +106,31 @@ describe('API endpoints', function() {
       });
   });
 
-  //59c949b3008f052792a09032000002
-  /*var leaseMetadataid;
-  it('Lease metadata POST API test-1', function() {
-    return chai.request(app)
-      .post('/leasemetadata')
-      .type('form')
-      //.attach('avatar',fs.readFileSync('avatar.png'), 'avatar.png')
-      .send(
-        {
-          "searchid": 7834,
-          "title":"some title",
-          "rent":"$50",
-          "lat" : 41.12,
-          "lon" : -70.34
-        }
-      ).then(function(res) {
-        id = res.body._id;
-        console.log(id);
-        expect(res).to.have.status(200);
-      });
-  });*/
-
   var id;
-  it('POST API test-1', function() {
+  it('POST API test-1', function() {  
     return chai.request(app)
-      .post('/add')
-      .send(
-        {
-          "owner": "saptarshi",
-          "location": "gainesville, Florida, USA",
-          "zipcode": 32608,
-          "description": "brief description about the apartment",
-            "accomodates": 1,
-            "bathrooms": 1,
-            "bathroomtype": "private",
-            "bedrooms": 2,
-            "studio": false,
-            "beds": 2,
-            "petfriendly": true,
-            "roomtype": "private room",
-            "kitchen": true,
-            "internet": false,
-            "tv": true,
-            "heating": false,
-            "airconditioning": true,
-            "washer_dryer": true,
-            "free_parking_on_premises": true,
-            "free_parking_on_street": false,
-            "wireless_internet": true,
-            "suitable_for_events": false,
-            "smoking_allowed": false,
-            "wheelchair_accessible": true,
-            "elevator": true,
-            "pool": true,
-            "gym": true,
-            "bathtub": true
-        }
-    )
+      .post('/lease')
+      .attach('image', './test/1.png')
+      .field('owner', 'Saptarshi')
+      .field('email', 'ssaptarshii@ufl.edu')
+      .field('title', 'sample test')
+      .field('zipcode', '32608')
+      .field('description', 'Apartment near downtown')
+      .field('rent','500')
+      .field('lat','45')
+      .field('lon','90')
+      .field('startdate','2017-11')
+      .field('enddate','2018-05')
+      .field("roomtype", "Shared room")
+      .field("bathrooms", "3")
+      .field("bedrooms", "4")
+      .field("internet", "1")
+      .field("airconditioning", "0")
+      .field("washer_dryer", "1")
+      .field("private_bathroom", "0")
+      .field("wheelchair_accessible", "0")
+      .field("pool", "0")
+      .field("gym", "1")
       .then(function(res) {
         id = res.body._id;
         expect(res).to.have.status(200);
@@ -116,54 +138,7 @@ describe('API endpoints', function() {
   });
 
 
-  it('JSON in POST API test-2', function() {
-    var newid;
-   return chai.request(app)
-      .post('/add')
-      .send(
-        {
-          "owner": "saptarshi",
-          "location": "gainesville, Florida, USA",
-          "zipcode": 32608,
-          "description": "brief description about the apartment",
-            "accomodates": 1,
-            "bathrooms": 1,
-            "bathroomtype": "private",
-            "bedrooms": 2,
-            "studio": false,
-            "beds": 2,
-            "petfriendly": true,
-            "roomtype": "private room",
-            "kitchen": true,
-            "internet": false,
-            "tv": true,
-            "heating": false,
-            "airconditioning": true,
-            "washer_dryer": true,
-            "free_parking_on_premises": true,
-            "free_parking_on_street": false,
-            "wireless_internet": true,
-            "suitable_for_events": false,
-            "smoking_allowed": false,
-            "wheelchair_accessible": true,
-            "elevator": true,
-            "pool": true,
-            "gym": true,
-            "bathtub": true
-        }
-    ).then(function(res) {
-        newid = res.body._id;
-        expect(res).to.have.status(200);
-        chai.request(app)
-        .delete('/delete_id?id='+newid)
-        .then(function(res) {
-          expect(res).to.have.status(200);
-        });
-       
-      });
-  });
-
-  it('should return all the lease metadata content', function() {
+  it('should return all the lease data', function() {
     return chai.request(app)
       .get('/leasemetadata')
       .then(function(res) {
@@ -171,21 +146,14 @@ describe('API endpoints', function() {
       });
   });
 
-  it('should return all the elemets matching the particular filters', function() {
+  it('should return all the lease data', function() {
     return chai.request(app)
-      .get('/mulfilters')
+      .get('/lease')
       .then(function(res) {
         expect(res).to.have.status(200);
       });
   });
 
-  it('should return all the elemets within specific radius of a point', function() {
-    return chai.request(app)
-      .get('/geosearch?lat=40&lon=79')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-      });
-  });
 
   it('should return all the elemets within specific price range', function() {
     return chai.request(app)
@@ -212,6 +180,14 @@ describe('API endpoints', function() {
       });
   });
 
+  it('should return content for the particular user', function() {
+    return chai.request(app)
+      .get('/mylease?name=Saptarshi')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+      });
+  });
+
   it('invalid GET request for the particular id', function() {
     return chai.request(app)
       .get('/get_id?id=59c949b3008f052792a09032000003')
@@ -226,15 +202,6 @@ describe('API endpoints', function() {
       .then(function(res) {
         expect(res).to.have.status(200);
         expect(res.body._id).to.be.not.equal('59c949b3008f052792a09032000003');
-      });
-  });
-
-  it('should return all content', function() {
-    return chai.request(app)
-      .get('/get')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-        expect(res.body.hits.total).to.be.greaterThan(0);
       });
   });
 
@@ -253,17 +220,5 @@ describe('API endpoints', function() {
         expect(err).to.have.status(400);
       });
   });
-
-
-  /*it('should return no elemets matching the particular filters', function() {
-      return chai.request(app)
-      .get('/mulfilters')
-      .then(function(res) {
-        expect(res).to.have.status(200);
-       // expect(res.body.hits.total).to.be.equal(0);
-      });
-  });
-*/
-
 
 });
