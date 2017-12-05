@@ -34,7 +34,7 @@ export class ListingDetailComponent implements OnInit {
     private http: HttpClient
   ) {  
     var  Listing: ListingDetailComponent;
-    var URL = 'http://192.168.2.24:3000/';
+    var URL = 'http://174.64.102.57:3000/';
   
     this.route.params.subscribe(params => {  
       const id = (params['id']);
@@ -57,7 +57,7 @@ export class ListingDetailComponent implements OnInit {
 
         var imgsrc:string = b._source.images[0];
         var img1 = document.getElementById("img");
-        var u = "http://192.168.2.24:3000/uploads/" + imgsrc;
+        var u = "http://174.64.102.57:3000/uploads/" + imgsrc;
         img1.setAttribute('style',"background-image:url("+u+");background-size: 100% 100%;background-repeat: no-repeat;");
         
 
@@ -167,7 +167,7 @@ export class ListingDetailComponent implements OnInit {
   book.to=this.email;
   book.subject = "Lease request";
   book.text = "Someone requested for details about the lease.\n Details: Email:" + form.email +"\nCheck-in Date:"+form.checkInDate+"\nCheck-out Date:"+form.checkOutDate;
-  this.http.post('http://192.168.2.24:3000/sendemail', book).subscribe();
+  this.http.post('http://174.64.102.57:3000/sendemail', book).subscribe();
   
   }
   

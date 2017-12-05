@@ -11,7 +11,6 @@ import {
     User
 }
 from '../models/index';
-
 @Injectable()
 export class UserService {
     constructor(private http: Http) {}
@@ -25,7 +24,7 @@ export class UserService {
     // }
 
     create(user: User) {
-        return this.http.post('http://192.168.2.24:3000/signup', user)
+        return this.http.post('http://174.64.102.57:3000/signup', user)
         .map(res => res.toString());
     }
 

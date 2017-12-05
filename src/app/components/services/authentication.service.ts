@@ -25,7 +25,7 @@ export class AuthenticationService {
     private router: Router, private cookie:CookieService) {}
 
     login(login: Login) {
-        return this.http.post('http://192.168.2.24:3000/login', login)
+        return this.http.post('http://174.64.102.57:3000/login', login)
             .map((response: Response) => {
                 const a = JSON.stringify(response);
                 const b = JSON.parse(a);
@@ -35,7 +35,7 @@ export class AuthenticationService {
                 this.data.userDetail = b._body;
                 this.data.userName = d[1];
                 this.data.userEmail = d[0];
-                this.cookie.put('loginCookie',this.data.userName)
+                this.cookie.put('loginCookie',this.data.userDetail)
                 let user = response.toString();
                 return user;
             });

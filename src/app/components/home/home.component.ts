@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
   onRangeApply() {
     this.data.markers.length = 0;
     this.data.listingArray.length = 0;
-    this.http.get('http://192.168.2.24:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
+    this.http.get('http://174.64.102.57:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
       .subscribe(res => {
         this.res = res;
         [].push.apply(this.data.listingArray, res);
@@ -125,7 +125,7 @@ export class HomeComponent implements OnInit {
 
   onMappClick() {
     this.data.markers.length = 0;
-    this.http.get('http://192.168.2.24:3000/leasemetadata')
+    this.http.get('http://174.64.102.57:3000/leasemetadata')
     .subscribe(res => {
       this.data.load(res, 'M');
     });
@@ -138,7 +138,7 @@ export class HomeComponent implements OnInit {
     this.data.markers.length = 0;
     
     this.data.listingArray.length = 0;
-    this.http.get('http://192.168.2.24:3000/date?min='
+    this.http.get('http://174.64.102.57:3000/date?min='
       + this.startDate.getFullYear() + '-' + (this.startDate.getMonth() + 1)
       + '&max=' + this.endDate.getFullYear() + '-' + (this.endDate.getMonth() + 1))
       .subscribe(res => {

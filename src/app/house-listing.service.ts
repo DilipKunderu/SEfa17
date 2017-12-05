@@ -17,7 +17,7 @@ export class HouseListingService {
 
   public listingArray: Array<any> = [];
   public markers: Array<Marker> = [];
-  public URL = 'http://192.168.2.24:3000/';
+  public URL = 'http://174.64.102.57:3000/';
   res: Object;
 
   model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
@@ -30,14 +30,14 @@ export class HouseListingService {
   private cookie:CookieService) {
       setTimeout(()=>this.http = injector.get(HttpClient));
 
-    this.http.get('http://192.168.2.24:3000/lease/')
+    this.http.get('http://174.64.102.57:3000/lease/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.listingArray, res);
     });
     if(this.cookie.get('loginCookie') != undefined){
-      this.userName = this.cookie.get('loginCookie');
-    this.isLoggedIn = true;
+      this.userDetail = this.cookie.get('loginCookie');
+      this.isLoggedIn = true;
   }
   else{
     this.isLoggedIn = false;
@@ -65,6 +65,7 @@ export class HouseListingService {
 
   setLogin() {
 if(this.cookie.get('loginCookie') != undefined){
+    this.userDetail = this.cookie.get('loginCookie');
     this.isLoggedIn = true;
   }
   else{

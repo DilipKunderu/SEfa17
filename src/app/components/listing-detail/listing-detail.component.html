@@ -66,7 +66,7 @@
                         </md-form-field>
 
                         <md-form-field style="width:100%">
-                            <input  id="EndDate" mdInput ngModel name="checkOutDate" placeholder="when" [mdDatepicker]="picker1" placeholder="Check out date" required>
+                            <input  id="endDate" mdInput ngModel name="checkOutDate" placeholder="when" [mdDatepicker]="picker1" placeholder="Check out date" required>
                             <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
                             <md-datepicker #picker1></md-datepicker>
 
@@ -79,11 +79,11 @@
                     </md-select>
                     <md-form-field style="width:100%;margin-top:15px">
                     <!-- <md-input-container style="width: 100%; margin-top:5px"> -->
-                     <input mdInput ngModel ngModel name="email" placeholder="Your email address" name="email" required>
+                     <input id = "requestEmail" mdInput ngModel ngModel name="email" placeholder="Your email address" name="email" required>
                      <!-- </md-input-container> -->
                     </md-form-field>
                     <md-dialog-actions align="center" style="padding-top:24px">
-                        <button md-button style="width:75%;background-color:red;color:#ffffff" ><b>Request details</b></button>
+                        <button id="request" md-button style="width:75%;background-color:red;color:#ffffff" ><b>Request details</b></button>
                     </md-dialog-actions>
                 </div>
 

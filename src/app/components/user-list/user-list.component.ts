@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
     }
 
   deleted (s: string) {
-    this.http.delete('http://192.168.2.24:3000/delete_id?id='+ s)
+    this.http.delete('http://174.64.102.57:3000/delete_id?id='+ s)
     .subscribe(res => {
       // console.log(res);
       this.router.navigate(['/']);
@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('http://192.168.2.24:3000/mylease?name=' + this.data.userName)
+    this.http.get('http://174.64.102.57:3000/mylease?name=' + this.data.userName)
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.array, res);

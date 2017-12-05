@@ -14,4 +14,8 @@ export class AppPage {
   clickDiscoverHosting(){
     return(element(by.id('Discover')));
   }
+
+  clickUserListing(){
+    return element(by.id('userListing'));
+  }
 }

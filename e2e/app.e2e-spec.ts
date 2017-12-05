@@ -83,10 +83,14 @@ describe('course-project App', () => {
 //   });
 it('Listing details', () => {
   homepage.navigateTo();
-  browser.sleep(1000);
+  browser.sleep(2000);
   homepage.carouselElement().click();
   browser.sleep(1000);
-  
+  listpage.setStartDate().sendKeys('12/5/2017');
+  listpage.setEndDate().sendKeys('12/10/2017');
+  listpage.setEmail().sendKeys('meghaname@ufl.edu');
+  listpage.request().click();
+  browser.sleep(2000);
   });
 
   it ('should signup, Login as a dummyUser', () => {
@@ -107,7 +111,9 @@ it('Listing details', () => {
     browser.sleep(2000);
     });
   it('Discover hosting', () => {
+    apppage.navigateTo();
     apppage.clickDiscoverHosting().click();
+    browser.sleep(1000);
     formpage.postTitle().sendKeys('DummyPost');
     formpage.postZipcode().sendKeys('32608');
     formpage.postDescription().sendKeys('This is a post from end2end testing.');
@@ -117,12 +123,15 @@ it('Listing details', () => {
     formpage.stepperNext3().click();
     formpage.setRent().sendKeys('500');
     formpage.submit().click();
-    browser.sleep(3000);
+    browser.sleep(1000);
     });
 
-   
+    it('User Listings', () => {
+      apppage.navigateTo();
+      apppage.clickUserListing().click();
+      browser.sleep(1000);
+    });
 
-   
 });
 
 // describe('course-project App1', () => {
