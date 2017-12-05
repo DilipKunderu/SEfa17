@@ -9,6 +9,48 @@ supertest = require('supertest');
 
 var request = supertest('localhost:3000');
 
+it('User sign up', function() {
+     return chai.request(app)
+       .post('/signup')
+        .send(
+          {
+            "email":"ssaptarshii@ufl.edu", 
+            "username":"sapt", 
+            "password":"hello"
+          }
+           
+      ).then(function(res) {
+        expect(res).to.have.status(200);
+      });
+  });
+
+  it('User sign in', function() {
+    return chai.request(app)
+      .post('/login')
+       .send(
+         {
+           "email":"ssaptarshii@ufl.edu",
+           "password":"hello"
+         }
+     ).then(function(res) {
+       expect(res).to.have.status(200);
+     });
+   });
+
+   it('Send email', function() {
+    return chai.request(app)
+      .post('/sendemail')
+       .send(
+         {
+           "email":"ssaptarshii@ufl.edu",
+           "subject":"test backend code",
+           "text" : "hello test"
+         }
+     ).then(function(res) {
+       expect(res).to.have.status(200);
+     });
+   });
+
 // describe('lease metadata upload', function() {
 //   it('file upload', function(done) {
 //     request.post('/lease')

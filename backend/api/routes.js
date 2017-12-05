@@ -147,20 +147,18 @@ router.get("/price", function(req, res) {
 });
 
 router.post('/sendemail',function(req,res){
-    console.log(req.body)
 	var mailOptions={
 		to : req.body.to,
 		subject : req.body.subject,
 		text : req.body.text
 	}
-	console.log(mailOptions);
     
     smtpTransport.sendMail(mailOptions, function(error, response){
         if(error){
                 console.log(error);
             res.end("error");
         }else{
-                console.log("Message sent: " + response.message);
+                //console.log("Message sent: " + response.message);
             res.end("sent");
             }
     });
