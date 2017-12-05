@@ -13,6 +13,7 @@
   - Express
   - ElasticSearch
   - Protractor
+  - Mocha
  
 ## Installation
   ### Node v4.2.0
@@ -31,7 +32,7 @@
  ## How To Run
  1. `npm install` - To install all required node modules
  2. `elasticsearch` - To be run as a service.
- 3. `node www` - To be run in a separate terminal to start the node server 
+ 3. `npm start` - To be run in a separate terminal to start the node server 
  4. `ng build` - To be run in a separate terminal to build the angular app
  5. In a browser, go to "localhost:4200" to access the website
  
@@ -47,16 +48,17 @@
   - Make sure you have installed mocha globally using command `npm install mocha -g`
   - Go into backend test folder and open the command prompt
   - Run backend tests using command `"npm test"`
+  - Run backend tests with code coverage using command `"npm test"`
 
 ## Documentation
 
   ### Back-End Documentation
   - Backend API Documentation https://github.com/DilipKunderu/SEfa17/wiki/Back-end-API
-  - Backend Auto-Generated Documentation 
 
   ## Front-End Docmentation
   - Frontend Documentation wiki https://github.com/DilipKunderu/SEfa17/wiki/Front-end-Documentation.
-  - Frontend Auto-Generated Documentation
+
+
  ## Team Members
   - Dilip Kunderu
   - Meghana Madineni
