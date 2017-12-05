@@ -5,6 +5,7 @@ import {HomePage} from './home.po';
 import {ListPage} from './list.po';
 import {SignupPage} from './signup.po';
 import {LoginPage} from './login.po';
+import {UserPage} from './user.po'
 import {browser, element, by, Key, ExpectedConditions} from 'protractor';
 
 describe('course-project App', () => {
@@ -15,6 +16,7 @@ describe('course-project App', () => {
   let formpage: FormPage;
   let signup: SignupPage;
   let login: LoginPage;
+  let userpage: UserPage;
 
   beforeEach(() => {
     homepage = new HomePage();
@@ -24,6 +26,7 @@ describe('course-project App', () => {
     formpage =  new FormPage();
     signup = new SignupPage();
     login = new LoginPage();
+    userpage = new UserPage();
     browser.get('slide-toggle');
   });
 
@@ -131,6 +134,8 @@ it('Listing details', () => {
     it('User Listings', () => {
       apppage.navigateTo();
       apppage.clickUserListing().click();
+      browser.sleep(1000);
+      userpage.deleteListing().click();
       browser.sleep(1000);
     });
 

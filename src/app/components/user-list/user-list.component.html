@@ -6,13 +6,13 @@
                   <button md-button  [routerLink]="['/listing-detail', {'id':data._id}]"  routerLinkActive="active">
                       <div fxLayout="column">
                         <div fxFlex="80">
-                            <img src="http://174.64.102.57:3000/uploads/{{ data._source.images[0]}}">
+                            <img src="http://localhost:3000/uploads/{{ data._source.images[0]}}">
                         </div>
                           <div fxFlex="10">{{data._source.title}}</div>
                           <div fxFlex="10">${{data._source.rent}}/month</div>
                       </div>
                     </button>
-                    <button md-raised-button color="warn" (click)="deleted(data._id)">DELETE</button>
+                    <button id = "button" md-raised-button color="warn" (click)="deleted(data._id)">DELETE</button>
               </div>
             </div>               
     </div>
