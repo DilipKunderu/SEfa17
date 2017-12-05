@@ -12,7 +12,7 @@ export class HomePage {
       return element(by.id('gator_logo')).getAttribute('svgIcon');
   }
   carouselElement() {
-      return element(by.id('listClick'));
+      return element(by.className('cardiv')).element(by.tagName('button'));
   }
 
   postPlace() {

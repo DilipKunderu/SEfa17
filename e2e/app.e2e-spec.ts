@@ -81,8 +81,15 @@ describe('course-project App', () => {
 //     input1.click();
 //     browser.sleep(5000);
 //   });
+it('Listing details', () => {
+  homepage.navigateTo();
+  browser.sleep(1000);
+  homepage.carouselElement().click();
+  browser.sleep(1000);
+  
+  });
 
-  it ('should signup, Login, Discover hosting, click on a listing, request details and logout a dummyUser', () => {
+  it ('should signup, Login as a dummyUser', () => {
     signup.navigateTo();
     signup.addName().sendKeys('DummyUser');
     signup.addEmail().sendKeys('gatorhousing@gmail.com');
@@ -97,19 +104,24 @@ describe('course-project App', () => {
     login.addEmail().sendKeys('gatorhousing@gmail.com');
     login.addPassword().sendKeys('hello');
     login.login().click();
-    browser.sleep(10000);
+    browser.sleep(2000);
+    });
+  it('Discover hosting', () => {
     apppage.clickDiscoverHosting().click();
-    browser.sleep(10000);
     formpage.postTitle().sendKeys('DummyPost');
     formpage.postZipcode().sendKeys('32608');
     formpage.postDescription().sendKeys('This is a post from end2end testing.');
     formpage.stepperNext1().click();
-    browser.sleep(10000);
-    //formpage.setBedrooms().
-    //formpage.setBathrooms().selectByText('4');
-   // browser.sleep(1000);
+    browser.sleep(1000);
+    formpage.stepperNext2().click();
+    formpage.stepperNext3().click();
+    formpage.setRent().sendKeys('500');
+    formpage.submit().click();
+    browser.sleep(3000);
+    });
 
-  });
+   
+
    
 });
 

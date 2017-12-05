@@ -60,13 +60,13 @@
                     <div style="padding-top:10px;" flex fxLayout="row" fxLayoutGap="30px" layout-fill>
 
                         <md-form-field style="width:100%">
-                            <input mdInput ngModel name="checkInDate" placeholder="when" [mdDatepicker]="picker" placeholder="Check in date" required>
+                            <input id="startDate" mdInput ngModel name="checkInDate" placeholder="when" [mdDatepicker]="picker" placeholder="Check in date" required>
                             <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
                             <md-datepicker #picker></md-datepicker>
                         </md-form-field>
 
                         <md-form-field style="width:100%">
-                            <input mdInput ngModel name="checkOutDate" placeholder="when" [mdDatepicker]="picker1" placeholder="Check out date" required>
+                            <input  id="EndDate" mdInput ngModel name="checkOutDate" placeholder="when" [mdDatepicker]="picker1" placeholder="Check out date" required>
                             <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
                             <md-datepicker #picker1></md-datepicker>
 
